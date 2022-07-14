@@ -332,3 +332,13 @@ Controller *Level::getController() const
 {
     return controller;
 }
+
+Graph *Level::getGraph() const
+{
+    return graph;
+}
+
+void Level::setGraph(Graph *value)
+{
+    graph = value;
+}

@@ -33,6 +33,9 @@ public:
 
     Controller *getController() const;
 
+    Graph *getGraph() const;
+    void setGraph(Graph *value);
+
 protected:
     const int ROW;
     const int COL;

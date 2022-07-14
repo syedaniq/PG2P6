@@ -4,6 +4,8 @@
 using std::cout;
 using std::endl;
 
+#include "switch.h"
+
 DungeonCrawler::DungeonCrawler(AbstractUI *abstractUI, Level *currentLevel)
     : abstractUI(abstractUI), currentLevel(currentLevel)
 {
@@ -88,6 +90,11 @@ void DungeonCrawler::play()
                         {
                             who->getTile()->moveTo(currentLevel->getTile(currentRow + newRow, currentCol + newCol), who);
                             mainHasMoved = true;
+
+                            if(typeid(*currentLevel->getTile((currentRow+newRow), (currentCol+newCol)))==typeid(Switch))
+                            {
+                                currentLevel->getGraph()->update();
+                            }
                         }
                     }
                     else

@@ -29,7 +29,7 @@ Tile *Door::onEnter(Tile *fromTile, Character *who)
 
 Tile *Door::onLeave(Tile *destTile, Character *who)
 {
-    if(who)
+    if(who or open)
         return this;
     else
         return nullptr;
