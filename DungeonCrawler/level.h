@@ -36,6 +36,8 @@ public:
     Graph *getGraph() const;
     void setGraph(Graph *value);
 
+    vector<int> getPath();
+
 protected:
     const int ROW;
     const int COL;

@@ -28,6 +28,9 @@ private:
                     and (this->bezeichnung.row == rhs.bezeichnung.row);
         }
 
+
+    public:
+        std::vector<Knoten *> getAdjazenzliste() const;
     };
 
     std::vector<Knoten*>knoten;
@@ -39,6 +42,7 @@ public:
     void addKante(Tile* from, Tile* to);
     void update();
     void print();
+    std::vector<Knoten *> getKnoten() const;
 };
 
 #endif // GRAPH_H

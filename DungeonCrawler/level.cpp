@@ -10,6 +10,8 @@
 #include <iostream>
 #include <typeinfo>
 
+#include "attackcontroller.h"
+
 Level::Level(Controller *controller, int x)
     : ROW(6), COL(6), controller(controller)
 {
@@ -341,4 +343,22 @@ Graph *Level::getGraph() const
 void Level::setGraph(Graph *value)
 {
     graph = value;
+}
+
+vector<int> Level::getPath()
+{
+    Tile* start;
+    for(auto& character : characters)
+        if(typeid(character->getController()) == typeid(AttackController))
+            start = character->getTile();
+
+    vector<Tile*>queue;
+
+    for(size_t i=0; i<graph->getKnoten().size(); i++)
+    {
+        for(size_t j=0; j<graph->getKnoten().at(i)->getAdjazenzliste().size(); j++)
+        {
+
+        }
+    }
 }
