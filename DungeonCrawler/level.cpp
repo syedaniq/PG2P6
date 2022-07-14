@@ -354,7 +354,9 @@ vector<int> Level::getPath()
 
     vector<Tile*>queue;
 
-    for(size_t i=0; i<graph->getKnoten().size(); i++)
+
+
+    for(size_t i=start->getRow(); i<graph->getKnoten().size(); i++)
     {
         for(size_t j=0; j<graph->getKnoten().at(i)->getAdjazenzliste().size(); j++)
         {

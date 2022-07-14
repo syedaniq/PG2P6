@@ -5,6 +5,11 @@
 #include "portal.h"
 #include "level.h"
 
+std::vector<Knoten *> Graph::getKnoten() const
+{
+    return knoten;
+}
+
 Graph::Graph(Level *level) : level(level)
 {
     for(int i=0; i<level->getROW(); i++)
@@ -129,4 +134,9 @@ void Graph::print()
         }
         cout << endl;
     }
+}
+
+std::vector<Knoten *> Knoten::getAdjazenzliste() const
+{
+    return adjazenzliste;
 }
