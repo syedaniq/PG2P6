@@ -136,7 +136,7 @@ void Graph::print()
     }
 }
 
-std::vector<Knoten *> Knoten::getAdjazenzliste() const
+std::vector<Graph::Knoten *> Graph::Knoten::getAdjazenzliste() const
 {
-    return adjazenzliste;
+
 }
