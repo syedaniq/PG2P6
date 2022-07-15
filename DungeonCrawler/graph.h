@@ -28,21 +28,21 @@ private:
                     and (this->bezeichnung.row == rhs.bezeichnung.row);
         }
 
-
     public:
-        std::vector<Knoten *> getAdjazenzliste() const;
+        const std::vector<Knoten *> &getAdjazenzliste() const;
     };
 
     std::vector<Knoten*>knoten;
 
 public:
     Graph(Level* level);
+    ~Graph();
     void addKnoten(Tile* t);
     void addNachbarKanten(Tile* from);
     void addKante(Tile* from, Tile* to);
     void update();
     void print();
-    std::vector<Knoten *> getKnoten() const;
+    const std::vector<Knoten *> &getKnoten() const;
 };
 
 #endif // GRAPH_H

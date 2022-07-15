@@ -40,7 +40,7 @@ private:
     MainWindow *main;
     VictoryScreen *win;
     LoseScreen *lose;
-    bool drawn;
+    bool drawn = false;
 };
 
 #endif // GRAPHICALUI_H
