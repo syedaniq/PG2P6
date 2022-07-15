@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
     level2->field.at(3).at(3) = new Lootchest(3, 3, gui);
 
-    Character *char1 = new Character("x", 1, l->getController(), 1000, 100, true);
+    Character *char1 = new Character("x", 1, l->getController(),50, 500, true);
     l->characters.push_back(char1);
     char1->setTile(l->getTile(2, 2));
     char1->getTile()->setCharacter(char1);

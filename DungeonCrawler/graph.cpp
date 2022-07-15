@@ -5,7 +5,7 @@
 #include "portal.h"
 #include "level.h"
 
-std::vector<Knoten *> Graph::getKnoten() const
+std::vector<Graph::Knoten *> Graph::getKnoten() const
 {
     return knoten;
 }
@@ -138,5 +138,5 @@ void Graph::print()
 
 std::vector<Graph::Knoten *> Graph::Knoten::getAdjazenzliste() const
 {
-
+    return adjazenzliste;
 }

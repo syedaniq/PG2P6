@@ -29,8 +29,15 @@ string Portal::getTexture()
         return "O";
 }
 
-Tile *Portal::onEnter(Tile * /*fromTile*/, Character * /*who*/)
+Tile *Portal::onEnter(Tile * /*fromTile*/, Character * who)
 {
+    if(this->getCharacter())
+    {
+        who->fight(this->getCharacter());
+
+        if(this->getCharacter()->getHitpoints() > 0)
+            return nullptr;
+    }
     return this->getDestination();
 }
 
