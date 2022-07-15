@@ -30,6 +30,7 @@ private:
 
     public:
         const std::vector<Knoten *> &getAdjazenzliste() const;
+        ~Knoten();
     };
 
     std::vector<Knoten*>knoten;
