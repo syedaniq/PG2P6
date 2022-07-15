@@ -5,7 +5,7 @@
 #include "portal.h"
 #include "level.h"
 
-const std::vector<Graph::Knoten *> &Graph::getKnoten() const
+std::vector<Knoten *> Graph::getKnoten() const
 {
     return knoten;
 }
@@ -26,18 +26,6 @@ Graph::Graph(Level *level) : level(level)
         {
             addNachbarKanten(level->getTile(i,j));
         }
-    }
-}
-
-Graph::~Graph()
-{
-    for(auto& knoten : knoten)
-    {
-        for(auto& adjazenz : knoten->adjazenzliste)
-        {
-            delete adjazenz;
-        }
-        delete knoten;
     }
 }
 
@@ -148,7 +136,7 @@ void Graph::print()
     }
 }
 
-const std::vector<Graph::Knoten *> &Graph::Knoten::getAdjazenzliste() const
+std::vector<Graph::Knoten *> Graph::Knoten::getAdjazenzliste() const
 {
-    return adjazenzliste;
+
 }
