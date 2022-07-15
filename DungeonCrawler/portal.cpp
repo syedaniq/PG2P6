@@ -31,7 +31,7 @@ string Portal::getTexture()
 
 Tile *Portal::onEnter(Tile * /*fromTile*/, Character * who)
 {
-    if(this->getCharacter())
+    if(this->hasCharacter() and !this->getCharacter()->getIsHuman())
     {
         who->fight(this->getCharacter());
 
