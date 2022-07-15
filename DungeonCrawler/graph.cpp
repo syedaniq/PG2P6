@@ -103,9 +103,6 @@ void Graph::addKante(Tile *from, Tile *to)
             knoten.at(i)->adjazenzliste.push_back(t);
         }
    }
-
-   delete f;
-   delete t;
 }
 
 void Graph::update()
@@ -154,12 +151,4 @@ void Graph::print()
 const std::vector<Graph::Knoten *> &Graph::Knoten::getAdjazenzliste() const
 {
     return adjazenzliste;
-}
-
-Graph::Knoten::~Knoten()
-{
-    for(auto& adjazenz : this->adjazenzliste)
-    {
-        delete adjazenz;
-    }
 }

@@ -41,12 +41,11 @@ Level::Level(Controller *controller, int x)
                 field.at(i).push_back(p2);
             else if (i == 5 and j == 5)
                 field.at(i).push_back(p);
-            else {
-                Floor* f = new Floor(i,j);
-                field.at(i).push_back(f);
-            }
+            else
+                field.at(i).push_back(new Floor(i, j));
         }
     }
+
     graph = new Graph(this);
 }
 
@@ -166,8 +165,6 @@ Level::~Level()
     }
     for (int i = 0; i < characters.size(); i++)
         delete characters.at(i);
-
-    delete graph;
 }
 
 Level &Level::operator=(const Level &level)
@@ -356,6 +353,8 @@ vector<int> Level::getPath()
             start = character->getTile();
 
     vector<Tile*>queue;
+
+
 
     for(size_t i=start->getRow(); i<graph->getKnoten().size(); i++)
     {

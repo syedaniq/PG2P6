@@ -6,6 +6,7 @@ class Ramp : public Tile
 {
 public:
     Ramp(int row, int col);
+
     // Tile interface
 public:
     string getTexture() override;
