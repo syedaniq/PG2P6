@@ -8,9 +8,7 @@ class Tile;
 
 class Graph
 {
-private:
-    Level* level;
-
+public:
     struct Knoten
     {
         struct Name
@@ -31,11 +29,9 @@ private:
 
     public:
         std::vector<Knoten *> getAdjazenzliste() const;
+        Knoten& operator=(const Knoten& rhs);
     };
 
-    std::vector<Knoten*>knoten;
-
-public:
     Graph(Level* level);
     void addKnoten(Tile* t);
     void addNachbarKanten(Tile* from);
@@ -43,6 +39,10 @@ public:
     void update();
     void print();
     std::vector<Knoten *> getKnoten() const;
+
+private:
+    Level* level;
+    std::vector<Knoten*>knoten;
 };
 
 #endif // GRAPH_H

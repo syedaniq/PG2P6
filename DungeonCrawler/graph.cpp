@@ -140,3 +140,21 @@ std::vector<Graph::Knoten *> Graph::Knoten::getAdjazenzliste() const
 {
     return adjazenzliste;
 }
+
+Graph::Knoten &Graph::Knoten::operator=(const Graph::Knoten &rhs)
+{
+    for(auto& adjazenz : adjazenzliste)
+    {
+        delete adjazenz;
+    }
+
+    for(size_t i=0; i<rhs.adjazenzliste.size(); i++)
+    {
+        adjazenzliste.push_back(rhs.adjazenzliste.at(i));
+    }
+
+    bezeichnung.col = rhs.bezeichnung.col;
+    bezeichnung.row = rhs.bezeichnung.row;
+
+    return *this;
+}

@@ -345,22 +345,13 @@ void Level::setGraph(Graph *value)
     graph = value;
 }
 
-vector<int> Level::getPath()
+vector<int> Level::getPath(Tile *from, Tile *to)
 {
-    Tile* start;
-    for(auto& character : characters)
-        if(typeid(character->getController()) == typeid(AttackController))
-            start = character->getTile();
+    Graph::Knoten* start;
+
+    for(auto& knoten : graph->getKnoten())
+        if(knoten->bezeichnung.col == from->getCol() and knoten->bezeichnung.row == from->getRow())
+            start = knoten;
 
     vector<Tile*>queue;
-
-
-
-    for(size_t i=start->getRow(); i<graph->getKnoten().size(); i++)
-    {
-        for(size_t j=0; j<graph->getKnoten().at(i)->getAdjazenzliste().size(); j++)
-        {
-
-        }
-    }
 }
