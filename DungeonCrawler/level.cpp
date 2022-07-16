@@ -386,8 +386,8 @@ vector<Tile*> Level::getPath(Tile *from, Tile *to)
                 v->besucht = true;
                 q.push(v);
                 v->parent = u;
-                cout << "Nachbar in Queue gepusht: (" << v->bezeichnung.row << "/" << v->bezeichnung.col << ")"
-                     << " Parent: (" << u->bezeichnung.row << "/" << u->bezeichnung.col << ")" << endl;
+                //cout << "Nachbar in Queue gepusht: (" << v->bezeichnung.row << "/" << v->bezeichnung.col << ")"
+                 //    << " Parent: (" << u->bezeichnung.row << "/" << u->bezeichnung.col << ")" << endl;
 
                 if(v->bezeichnung.col == ziel->bezeichnung.col and v->bezeichnung.row == ziel->bezeichnung.row)
                 {
@@ -404,7 +404,7 @@ vector<Tile*> Level::getPath(Tile *from, Tile *to)
                 }
             } else
             {
-                cout << "Bereits besucht: (" << v->bezeichnung.row << "/" << v->bezeichnung.col << ")" << endl;
+               // cout << "Bereits besucht: (" << v->bezeichnung.row << "/" << v->bezeichnung.col << ")" << endl;
             }
         }
     }
