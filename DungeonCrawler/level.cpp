@@ -348,10 +348,13 @@ void Level::setGraph(Graph *value)
 vector<int> Level::getPath(Tile *from, Tile *to)
 {
     Graph::Knoten* start;
+    Graph::Knoten* ziel;
 
     for(auto& knoten : graph->getKnoten())
+    {
         if(knoten->bezeichnung.col == from->getCol() and knoten->bezeichnung.row == from->getRow())
             start = knoten;
+    }
 
     vector<Tile*>queue;
 }
