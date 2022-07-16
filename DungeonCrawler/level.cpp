@@ -367,12 +367,20 @@ vector<Tile*> Level::getPath(Tile *from, Tile *to)
 
     while(!q.empty())
     {
-        auto *u = q.front();
-        q.pop();
-        auto nachbarn = u->getAdjazenzliste();
+        Graph::Knoten *u = q.front();
 
-        for(auto& v : nachbarn)
+        for(auto& knoten : graph->getKnoten())
         {
+            if(knoten->bezeichnung.col == u->bezeichnung.col and knoten->bezeichnung.row == u->bezeichnung.row)
+                u = knoten;
+        }
+
+        q.pop();
+        //auto nachbarn = u->getAdjazenzliste();
+
+        for(auto& v : u->adjazenzliste)
+        {
+            //cout << "Nachbar in Queue: (" << v->bezeichnung.row << "/" << v->bezeichnung.col << ")" << endl;
             if(!v->besucht)
             {
                 v->besucht = true;
@@ -389,6 +397,9 @@ vector<Tile*> Level::getPath(Tile *from, Tile *to)
                         parents.push_back(this->getTile(current->bezeichnung.row,current->bezeichnung.col));
                         current = current->parent;
                     }
+
+                    for(auto& parent : parents)
+                        cout << "Parent: (" << parent->getRow() << "/" << parent->getCol() << ")" << endl;
                     return parents;
                 }
             } else

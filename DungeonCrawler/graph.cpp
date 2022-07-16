@@ -150,6 +150,8 @@ Graph::Knoten &Graph::Knoten::operator=(const Graph::Knoten &rhs)
         delete adjazenz;
     }
 
+    getAdjazenzliste().resize(rhs.getAdjazenzliste().size());
+
     for(size_t i=0; i<rhs.adjazenzliste.size(); i++)
     {
         adjazenzliste.push_back(rhs.adjazenzliste.at(i));

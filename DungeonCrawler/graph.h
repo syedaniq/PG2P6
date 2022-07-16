@@ -25,8 +25,6 @@ public:
             return (this->bezeichnung.col == rhs.bezeichnung.col)
                     and (this->bezeichnung.row == rhs.bezeichnung.row);
         }
-
-
     public:
         std::vector<Knoten *> getAdjazenzliste() const;
         Knoten& operator=(const Knoten& rhs);
