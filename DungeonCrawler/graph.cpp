@@ -40,6 +40,45 @@ void Graph::addKnoten(Tile *t)
         knoten.push_back(n);
 }
 
+Graph::Knoten* Graph::findKnoten(int row, int col)
+{
+    int end = this->knoten.size()-1;
+     int current =0;
+    int begin=0;
+    while(begin<=end)
+    {
+        current= (end+begin)/2;
+        if(this->knoten.at(current)->bezeichnung.row==row)
+        {
+            if(this->knoten.at(current)->bezeichnung.col==col)
+            {
+                return knoten.at(current);
+            }
+            if(this->knoten.at(current)->bezeichnung.col<col)
+            {
+                 begin=current+1;
+            }
+            if(this->knoten.at(current)->bezeichnung.col>col)
+            {
+                end=current-1;
+            }
+        }
+        else if(this->knoten.at(current)->bezeichnung.row<row)
+        {
+             begin=current+1;
+        }
+        else if(this->knoten.at(current)->bezeichnung.row>row)
+        {
+           end=current-1;
+        }
+        else if(begin==end)
+        {
+            return nullptr;
+        }
+
+    }
+}
+
 void Graph::addNachbarKanten(Tile* from)
 {
     std::array<int,8> dr ={-1,1,0,0,-1,-1,1,1};

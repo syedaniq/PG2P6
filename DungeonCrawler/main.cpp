@@ -62,6 +62,10 @@ int main(int argc, char *argv[])
     leveChanger2->setDestTile(leveChanger1);
 
     l->getPath(char1->getTile(),zombie2->getTile());
+   Graph::Knoten* n =  (l->getGraph()->findKnoten(2,2));
+   if(0==0){
+       std:: cout << "row gefunden";
+   }
     dungeon.play();
     app.exec();
 
