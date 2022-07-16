@@ -11,6 +11,7 @@
 #include <typeinfo>
 
 #include "attackcontroller.h"
+#include <queue>
 
 Level::Level(Controller *controller, int x)
     : ROW(6), COL(6), controller(controller)
@@ -345,7 +346,7 @@ void Level::setGraph(Graph *value)
     graph = value;
 }
 
-vector<int> Level::getPath(Tile *from, Tile *to)
+vector<Tile*> Level::getPath(Tile *from, Tile *to)
 {
     Graph::Knoten* start;
     Graph::Knoten* ziel;
@@ -354,7 +355,47 @@ vector<int> Level::getPath(Tile *from, Tile *to)
     {
         if(knoten->bezeichnung.col == from->getCol() and knoten->bezeichnung.row == from->getRow())
             start = knoten;
+        if(knoten->bezeichnung.col == to->getCol() and knoten->bezeichnung.row == to->getRow())
+            ziel = knoten;
     }
 
-    vector<Tile*>queue;
+    queue<Graph::Knoten*>q;
+    q.push(start);
+    start->besucht = true;
+
+    vector<Tile*> parents;
+
+    while(!q.empty())
+    {
+        auto *u = q.front();
+        q.pop();
+        auto nachbarn = u->getAdjazenzliste();
+
+        for(auto& v : nachbarn)
+        {
+            if(!v->besucht)
+            {
+                v->besucht = true;
+                q.push(v);
+                v->parent = u;
+                cout << "Nachbar in Queue gepusht: (" << v->bezeichnung.row << "/" << v->bezeichnung.col << ")"
+                     << " Parent: (" << u->bezeichnung.row << "/" << u->bezeichnung.col << ")" << endl;
+
+                if(v->bezeichnung.col == ziel->bezeichnung.col and v->bezeichnung.row == ziel->bezeichnung.row)
+                {
+                    auto current = v;
+                    while(current != nullptr)
+                    {
+                        parents.push_back(this->getTile(current->bezeichnung.row,current->bezeichnung.col));
+                        current = current->parent;
+                    }
+                    return parents;
+                }
+            } else
+            {
+                cout << "Bereits besucht: (" << v->bezeichnung.row << "/" << v->bezeichnung.col << ")" << endl;
+            }
+        }
+    }
+    return parents;
 }

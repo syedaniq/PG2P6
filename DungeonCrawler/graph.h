@@ -30,6 +30,8 @@ public:
     public:
         std::vector<Knoten *> getAdjazenzliste() const;
         Knoten& operator=(const Knoten& rhs);
+        bool besucht = false;
+        Knoten* parent = nullptr;
     };
 
     Graph(Level* level);

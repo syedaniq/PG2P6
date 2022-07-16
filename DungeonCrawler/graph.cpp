@@ -16,7 +16,8 @@ Graph::Graph(Level *level) : level(level)
     {
         for(int j=0; j<level->getCOL(); j++)
         {
-            addKnoten(level->getTile(i,j));
+            if(level->getTile(i,j)->onEnter(nullptr,nullptr))
+                addKnoten(level->getTile(i,j));
         }
     }
 
@@ -110,7 +111,8 @@ void Graph::update()
     {
         for(int j=0; j<level->getCOL(); j++)
         {
-            addKnoten(level->getTile(i,j));
+            if(level->getTile(i,j)->onEnter(nullptr,nullptr))
+                addKnoten(level->getTile(i,j));
         }
     }
 

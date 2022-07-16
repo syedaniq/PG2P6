@@ -61,6 +61,7 @@ int main(int argc, char *argv[])
     leveChanger1->setDestTile(leveChanger2);
     leveChanger2->setDestTile(leveChanger1);
 
+    l->getPath(char1->getTile(),zombie2->getTile());
     dungeon.play();
     app.exec();
 

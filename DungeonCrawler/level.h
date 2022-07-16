@@ -36,7 +36,7 @@ public:
     Graph *getGraph() const;
     void setGraph(Graph *value);
 
-    vector<int> getPath(Tile* from, Tile* to);
+    vector<Tile*> getPath(Tile* from, Tile* to);
 
 protected:
     const int ROW;
