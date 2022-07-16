@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
     Character *char1 = new Character("x", 1, l->getController(),50, 500, true);
     l->characters.push_back(char1);
-    char1->setTile(l->getTile(2, 2));
+    char1->setTile(l->getTile(4, 2));
     char1->getTile()->setCharacter(char1);
 
     string muster = "66444466";
@@ -61,10 +61,10 @@ int main(int argc, char *argv[])
     leveChanger1->setDestTile(leveChanger2);
     leveChanger2->setDestTile(leveChanger1);
 
-    l->getPath(char1->getTile(),zombie2->getTile());
-   Graph::Knoten* n =  (l->getGraph()->findKnoten(2,2));
-   if(0==0){
-       std:: cout << "row gefunden";
+    l->getPath(zombie2->getTile(),char1->getTile());
+   Graph::Knoten* n =  (l->getGraph()->findKnoten(5,5));
+   if(n->bezeichnung.row == 2){
+       std:: cout << "row gefunden" << endl;
    }
     dungeon.play();
     app.exec();

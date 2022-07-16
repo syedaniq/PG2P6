@@ -380,6 +380,11 @@ vector<Tile*> Level::getPath(Tile *from, Tile *to)
 
         for(auto& v : u->adjazenzliste)
         {
+            for(auto& knoten : graph->getKnoten())
+            {
+                if(knoten->bezeichnung.col == v->bezeichnung.col and knoten->bezeichnung.row == v->bezeichnung.row)
+                    v = knoten;
+            }
             //cout << "Nachbar in Queue: (" << v->bezeichnung.row << "/" << v->bezeichnung.col << ")" << endl;
             if(!v->besucht)
             {
