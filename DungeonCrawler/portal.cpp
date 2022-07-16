@@ -33,10 +33,12 @@ Tile *Portal::onEnter(Tile * /*fromTile*/, Character * who)
 {
     if(this->hasCharacter() and !this->getCharacter()->getIsHuman())
     {
-        who->fight(this->getCharacter());
+        if(who) {
+            who->fight(this->getCharacter());
 
         if(this->getCharacter()->getHitpoints() > 0)
             return nullptr;
+        }
     }
     return this->getDestination();
 }
