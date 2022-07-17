@@ -44,9 +44,11 @@ string LevelChanger::getTexture()
 
 Tile *LevelChanger::onEnter(Tile *fromTile, Character *who)
 {
-    if(who)
+    if(who) {
         activate();
-    return destTile;
+        return destTile;
+    } else
+        return nullptr;
 }
 
 Tile *LevelChanger::onLeave(Tile *destTile, Character *who)

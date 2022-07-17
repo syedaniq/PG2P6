@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
     Character *char1 = new Character("x", 1, l->getController(),50, 500, true);
     l->characters.push_back(char1);
-    char1->setTile(l->getTile(3, 0));
+    char1->setTile(l->getTile(4, 2));
     char1->getTile()->setCharacter(char1);
 
     string muster = "66444466";
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     LevelChanger *leveChanger1 = new LevelChanger(level2, nullptr, 3, 3);
     delete l->field.at(3).at(3);
     l->field.at(3).at(3) = leveChanger1;
-
+    l->getGraph()->update();
     LevelChanger *leveChanger2 = new LevelChanger(l, nullptr, 0, 4);
     delete level2->field.at(0).at(4);
     level2->field.at(0).at(4) = leveChanger2;
