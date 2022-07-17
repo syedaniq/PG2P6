@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
     Character *char1 = new Character("x", 1, l->getController(),50, 500, true);
     l->characters.push_back(char1);
-    char1->setTile(l->getTile(4, 2));
+    char1->setTile(l->getTile(3, 0));
     char1->getTile()->setCharacter(char1);
 
     string muster = "66444466";

@@ -348,16 +348,8 @@ void Level::setGraph(Graph *value)
 
 vector<Tile*> Level::getPath(Tile *from, Tile *to)
 {
-    Graph::Knoten* start;
-    Graph::Knoten* ziel;
-
-    for(auto& knoten : graph->getKnoten())
-    {
-        if(knoten->bezeichnung.col == from->getCol() and knoten->bezeichnung.row == from->getRow())
-            start = knoten;
-        if(knoten->bezeichnung.col == to->getCol() and knoten->bezeichnung.row == to->getRow())
-            ziel = knoten;
-    }
+    Graph::Knoten* start = graph->findKnoten(from->getRow(),from->getCol());
+    Graph::Knoten* ziel = graph->findKnoten(to->getRow(),to->getCol());
 
     queue<Graph::Knoten*>q;
     q.push(start);
@@ -368,24 +360,13 @@ vector<Tile*> Level::getPath(Tile *from, Tile *to)
     while(!q.empty())
     {
         Graph::Knoten *u = q.front();
-
-        for(auto& knoten : graph->getKnoten())
-        {
-            if(knoten->bezeichnung.col == u->bezeichnung.col and knoten->bezeichnung.row == u->bezeichnung.row)
-                u = knoten;
-        }
-
+        u = graph->findKnoten(u->bezeichnung.row,u->bezeichnung.col);
         q.pop();
-        //auto nachbarn = u->getAdjazenzliste();
 
         for(auto& v : u->adjazenzliste)
         {
-            for(auto& knoten : graph->getKnoten())
-            {
-                if(knoten->bezeichnung.col == v->bezeichnung.col and knoten->bezeichnung.row == v->bezeichnung.row)
-                    v = knoten;
-            }
-            //cout << "Nachbar in Queue: (" << v->bezeichnung.row << "/" << v->bezeichnung.col << ")" << endl;
+            v = graph->findKnoten(v->bezeichnung.row, v->bezeichnung.col);
+
             if(!v->besucht)
             {
                 v->besucht = true;
