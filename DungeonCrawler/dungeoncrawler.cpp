@@ -16,9 +16,8 @@ void DungeonCrawler::play()
     // 1. moveAufruf für jede Figur
     while (1)
     {
-
+        currentLevel->getGraph()->update();
         abstractUI->draw(currentLevel);
-        //currentLevel->getGraph()->update();
 
         int richtung;
         int currentRow = -1;
