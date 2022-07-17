@@ -222,7 +222,6 @@ void MainWindow::updateField(Level *level)
 
             if (level->getTile(i, j)->hasCharacter() and level->getTile(i, j)->getCharacter()->getHitpoints() > 0)
             {
-
                 if (level->getTile(i, j)->getCharacter()->getIsHuman())
                 {
                     gridlayout->removeWidget(character);

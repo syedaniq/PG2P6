@@ -96,52 +96,55 @@ int GraphicalUI::move()
             QTest::qWait(50);
             main->character->setPixmap(left.at(0));
         }
-        if (lastInput == 2)
+        else if (lastInput == 2)
         {
             main->character->setPixmap(front.at(2));
             QTest::qWait(50);
             main->character->setPixmap(front.at(1));
         }
-        if (lastInput == 3)
+        else if (lastInput == 3)
         {
             main->character->setPixmap(front.at(2));
             QTest::qWait(50);
             main->character->setPixmap(right.at(0));
         }
-        if (lastInput == 4)
+        else if (lastInput == 4)
         {
             main->character->setPixmap(left.at(0));
             QTest::qWait(50);
             main->character->setPixmap(left.at(1));
         }
-        if (lastInput == 5)
+        else if (lastInput == 5)
         {
             main->character->setPixmap(front.at(1));
         }
-        if (lastInput == 6)
+        else if (lastInput == 6)
         {
             main->character->setPixmap(right.at(0));
             QTest::qWait(50);
             main->character->setPixmap(right.at(1));
         }
-        if (lastInput == 7)
+        else if (lastInput == 7)
         {
             main->character->setPixmap(back.at(0));
             QTest::qWait(50);
             main->character->setPixmap(left.at(1));
         }
-        if (lastInput == 8)
+        else if (lastInput == 8)
         {
             main->character->setPixmap(back.at(0));
             QTest::qWait(50);
             main->character->setPixmap(back.at(2));
         }
-        if (lastInput == 9)
+        else if (lastInput == 9)
         {
             main->character->setPixmap(back.at(2));
             QTest::qWait(50);
             main->character->setPixmap(right.at(2));
         }
+        else
+            cout << "Keine Eingabe erkannt!" << endl;
+
         int temp = lastInput;
         lastInput = 10;
         return temp;

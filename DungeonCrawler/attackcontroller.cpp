@@ -1,4 +1,6 @@
 #include "attackcontroller.h"
+#include <iostream>
+#include "portal.h"
 
 AttackController::AttackController(Level *level) : level(level)
 {
@@ -25,7 +27,11 @@ void AttackController::convertPath()
         auto path = level->getPath(level->getGoblin()->getTile(),level->getPlayer()->getTile());
         for(size_t i=path.size()-1; i>0; i--)
         {
+            std::cout << "PFAD: " << path.at(i)->getRow() << " / " << path.at(i)->getCol() << " ";
             rueckgabe.push_back(getMoveInt(path.at(i),path.at(i-1)));
+            for(int i=0; i<rueckgabe.size(); i++)
+                cout << "RUECKGABE: " << rueckgabe.at(i) << " ";
+            cout << endl;
         }
     }
 }
@@ -37,6 +43,13 @@ int AttackController::getMoveInt(Tile *from, Tile *to)
     int toRow = to->getRow();
     int toCol = to->getCol();
 
+    if(typeid(*to) == typeid(Portal))
+    {
+        Portal* p = dynamic_cast<Portal*>(to);
+        toRow = p->getDestination()->getRow();
+        toCol = p->getDestination()->getCol();
+    }
+
     int colAnderung = toCol - fromCol;
     int rowAnderung = toRow - fromRow;
 
@@ -44,6 +57,8 @@ int AttackController::getMoveInt(Tile *from, Tile *to)
     {
         if(colAnderung == -1)
             return 4;
+        else if(colAnderung == 0)
+            return 5;
         else if(colAnderung == 1)
             return 6;
     }
