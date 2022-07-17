@@ -16,7 +16,10 @@ int AttackController::move()
         return 5;
     }
     index++;
-    return rueckgabe.at(0);
+    if(rueckgabe.size()>0)
+        return rueckgabe.at(0);
+    else
+        return 10;
 }
 
 void AttackController::convertPath()
