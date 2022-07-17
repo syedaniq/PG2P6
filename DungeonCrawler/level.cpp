@@ -385,6 +385,12 @@ vector<Tile*> Level::getPath(Tile *from, Tile *to)
 
     vector<Tile*> parents;
 
+    if(!ziel)
+    {
+        parents.push_back(from);
+        return parents;
+    }
+
     while(!q.empty())
     {
         Graph::Knoten *u = q.front();
