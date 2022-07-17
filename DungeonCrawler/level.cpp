@@ -307,6 +307,24 @@ int Level::getCOL() const
     return COL;
 }
 
+Character* Level::getPlayer()
+{
+    for(auto& character : characters)
+        if(character->getIsHuman())
+            return character;
+
+    return nullptr;
+}
+
+Character *Level::getGoblin()
+{
+    for(auto& character : characters)
+        if(typeid(*character->getController()) == typeid(AttackController))
+            return character;
+
+    return nullptr;
+}
+
 void Level::removePlayer()
 {
     characters.pop_front();
@@ -348,6 +366,16 @@ void Level::setGraph(Graph *value)
 
 vector<Tile*> Level::getPath(Tile *from, Tile *to)
 {
+    if(!ersterZug)
+    {
+        for(auto& knoten : graph->getKnoten())
+        {
+            knoten->besucht = false;
+            knoten->parent = nullptr;
+        }
+    }
+
+    ersterZug = false;
     Graph::Knoten* start = graph->findKnoten(from->getRow(),from->getCol());
     Graph::Knoten* ziel = graph->findKnoten(to->getRow(),to->getCol());
 

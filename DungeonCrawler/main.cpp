@@ -9,6 +9,7 @@
 
 #include "guardcontroller.h"
 #include "stationarycontroller.h"
+#include "attackcontroller.h"
 #include "controller.h"
 
 #include "lootchest.h"
@@ -30,7 +31,7 @@ int main(int argc, char *argv[])
     char1->setTile(l->getTile(4, 2));
     char1->getTile()->setCharacter(char1);
 
-    string muster = "66444466";
+    /*string muster = "66444466";
     GuardController *g = new GuardController(muster);
     Character *zombie = new Character("x", 1, g);
     l->getTile(5, 3)->setCharacter(zombie);
@@ -41,7 +42,13 @@ int main(int argc, char *argv[])
     Character *zombie2 = new Character("x", 1, sc, 100, 100, false);
     l->getTile(0, 4)->setCharacter(zombie2);
     zombie2->setTile(l->getTile(0, 4));
-    l->getCharacters().push_back(zombie2);
+    l->getCharacters().push_back(zombie2);*/
+
+    AttackController *ac = new AttackController(l);
+    Character* zombie3 = new Character("x",1,ac);
+    l->getTile(0,5)->setCharacter(zombie3);
+    zombie3->setTile(l->getTile(0,5));
+    l->getCharacters().push_back(zombie3);
 
     LevelChanger *leveChanger1 = new LevelChanger(level2, nullptr, 3, 3);
     delete l->field.at(3).at(3);
@@ -61,11 +68,6 @@ int main(int argc, char *argv[])
     leveChanger1->setDestTile(leveChanger2);
     leveChanger2->setDestTile(leveChanger1);
 
-    l->getPath(zombie2->getTile(),char1->getTile());
-   Graph::Knoten* n =  (l->getGraph()->findKnoten(5,5));
-   if(n->bezeichnung.row == 2){
-       std:: cout << "row gefunden" << endl;
-   }
     dungeon.play();
     app.exec();
 

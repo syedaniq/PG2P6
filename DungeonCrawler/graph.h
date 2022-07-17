@@ -6,6 +6,10 @@ class Tile;
 #include <list>
 #include <vector>
 
+/*
+ * Graph implementierung und BFS vom Foliensatz inspiriert
+ */
+
 class Graph
 {
 public:

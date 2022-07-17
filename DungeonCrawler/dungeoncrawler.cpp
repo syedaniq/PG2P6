@@ -18,6 +18,7 @@ void DungeonCrawler::play()
     {
 
         abstractUI->draw(currentLevel);
+        //currentLevel->getGraph()->update();
 
         int richtung;
         int currentRow = -1;

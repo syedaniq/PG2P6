@@ -25,6 +25,9 @@ public:
     int getROW() const;
     int getCOL() const;
     vector<vector<Tile *>> field;
+
+    Character *getPlayer();
+    Character *getGoblin();
     void removePlayer();
     bool removeDeadPlayers();
     void addPlayer(Character *c);
@@ -45,6 +48,7 @@ protected:
 private:
     Controller *controller;
     Graph *graph;
+    bool ersterZug = true;
 };
 
 #endif // LEVEL_H

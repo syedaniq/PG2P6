@@ -17,7 +17,8 @@ Graph::Graph(Level *level) : level(level)
         for(int j=0; j<level->getCOL(); j++)
         {
             if(level->getTile(i,j)->onEnter(nullptr,nullptr))
-                addKnoten(level->getTile(i,j));
+                if(level->getTile(i,j)->hasCharacter() and !level->getTile(i,j)->getCharacter()->getIsHuman())
+                    addKnoten(level->getTile(i,j));
         }
     }
 
@@ -92,6 +93,8 @@ void Graph::addNachbarKanten(Tile* from)
         if(newRow < 0 or newCol < 0)
             continue;
         if(newRow >= level->getROW() or newCol >= level->getCOL())
+            continue;
+        if(level->getTile(newRow,newCol)->hasCharacter() and !level->getTile(newRow,newCol)->getCharacter()->getIsHuman())
             continue;
 
         if(level->getTile(newRow,newCol)->onEnter(from,nullptr) and from->onLeave(level->getTile(newRow,newCol),nullptr))
