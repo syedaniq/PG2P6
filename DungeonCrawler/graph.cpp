@@ -78,6 +78,7 @@ Graph::Knoten* Graph::findKnoten(int row, int col)
         }
 
     }
+    return nullptr;
 }
 
 void Graph::addNachbarKanten(Tile* from)
@@ -140,12 +141,12 @@ void Graph::update()
 {
     for(auto& knoten : knoten)
     {
-        for(auto& adjazenz : knoten->adjazenzliste)
+        /*for(auto& adjazenz : knoten->adjazenzliste)
         {
             delete adjazenz;
-        }
+        }*/
         knoten->adjazenzliste.clear();
-        delete knoten;
+        //delete knoten;
     }
     knoten.clear();
 

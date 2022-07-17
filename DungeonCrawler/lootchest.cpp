@@ -16,6 +16,9 @@ string Lootchest::getTexture()
 
 Tile *Lootchest::onEnter(Tile *fromTile, Character *who)
 {
+    if(!who or !fromTile)
+        return  nullptr;
+
     if (who->getIsHuman())
     {
         g->hasWon();
