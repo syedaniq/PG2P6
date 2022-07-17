@@ -19,6 +19,7 @@ SOURCES += \
         guardcontroller.cpp \
         level.cpp \
         levelchanger.cpp \
+        levelverwaltung.cpp \
         list.cpp \
         lootchest.cpp \
         losescreen.cpp \
@@ -50,6 +51,7 @@ HEADERS += \
     guardcontroller.h \
     level.h \
     levelchanger.h \
+    levelverwaltung.h \
     list.h \
     lootchest.h \
     losescreen.h \
