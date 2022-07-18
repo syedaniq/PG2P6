@@ -41,7 +41,7 @@ public:
 
     vector<Tile*> getPath(Tile* from, Tile* to);
 
-    Level(int row, int col);
+    Level(Controller* controller, int row, int col);
 protected:
     const int ROW;
     const int COL;

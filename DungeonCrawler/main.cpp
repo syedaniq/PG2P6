@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
     leveChanger2->attach(&dungeon);
     leveChanger1->setDestTile(leveChanger2);
     leveChanger2->setDestTile(leveChanger1);*/
-    string s="/home/hamoudi/Uni/PG2/PG2P6/DungeonCrawler/level1.json";
+    string s="/home/aniq/Documents/PG2P6/DungeonCrawler/level1.json";
     Levelverwaltung *lv = new Levelverwaltung(s);
     lv->einlesen();
    // dungeon.play();

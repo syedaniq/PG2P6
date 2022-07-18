@@ -19,7 +19,7 @@
     {
       "col": 8,
       "controller": {
-        "movement": "wasd",
+        "movement": "8456",
         "name": "guardcontroller",
         "pos": "0"
       },
