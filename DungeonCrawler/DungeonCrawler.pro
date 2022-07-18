@@ -77,3 +77,6 @@ FORMS += \
 
 RESOURCES += \
     scam.qrc
+
+DISTFILES += \
+    level1.json
