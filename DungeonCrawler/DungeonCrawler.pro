@@ -49,6 +49,7 @@ HEADERS += \
     graph.h \
     graphicalui.h \
     guardcontroller.h \
+    json.hpp \
     level.h \
     levelchanger.h \
     levelverwaltung.h \
