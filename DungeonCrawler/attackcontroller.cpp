@@ -28,6 +28,11 @@ void AttackController::convertPath()
         rueckgabe.push_back(5);
     else {
         auto path = level->getPath(level->getGoblin()->getTile(),level->getPlayer()->getTile());
+        if(path.empty())
+        {
+            rueckgabe.push_back(5);
+            return;
+        }
         for(size_t i=path.size()-1; i>0; i--)
         {
             std::cout << "PFAD: " << path.at(i)->getRow() << " / " << path.at(i)->getCol() << " ";

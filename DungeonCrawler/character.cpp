@@ -103,11 +103,13 @@ void Character::fight(Character *enemy)
     if (enemy->getHitpoints() <= 0)
     {
         enemy->getTile()->setCharacterDied(true);
+        enemy->getTile()->setCharacter(nullptr);
         enemy->setTile(this->getTile());
     }
 
     if (this->getHitpoints() <= 0)
     {
         this->getTile()->setCharacterDied(true);
+        this->getTile()->setCharacter(nullptr);
     }
 }
