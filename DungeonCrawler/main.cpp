@@ -13,13 +13,14 @@
 #include "controller.h"
 
 #include "lootchest.h"
+#include "levelverwaltung.h"
 #include "graph.h"
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+   /* QApplication app(argc, argv);
     GraphicalUI *gui = new GraphicalUI;
     Level *l = new Level(gui, 0);
     Level *level2 = new Level(gui, 2);
@@ -29,7 +30,7 @@ int main(int argc, char *argv[])
     Character *char1 = new Character("x", 1, l->getController(),50, 500, true);
     l->characters.push_back(char1);
     char1->setTile(l->getTile(4, 2));
-    char1->getTile()->setCharacter(char1);
+    char1->getTile()->setCharacter(char1);*/
 
     /*string muster = "66444466";
     GuardController *g = new GuardController(muster);
@@ -44,7 +45,7 @@ int main(int argc, char *argv[])
     zombie2->setTile(l->getTile(0, 4));
     l->getCharacters().push_back(zombie2);*/
 
-    AttackController *ac = new AttackController(l);
+ /*   AttackController *ac = new AttackController(l);
     Character* zombie3 = new Character("x",1,ac);
     l->getTile(0,5)->setCharacter(zombie3);
     zombie3->setTile(l->getTile(0,5));
@@ -66,9 +67,11 @@ int main(int argc, char *argv[])
     leveChanger1->attach(&dungeon);
     leveChanger2->attach(&dungeon);
     leveChanger1->setDestTile(leveChanger2);
-    leveChanger2->setDestTile(leveChanger1);
-
-    dungeon.play();
-    app.exec();
+    leveChanger2->setDestTile(leveChanger1);*/
+    string s="/home/hamoudi/Uni/PG2/PG2P6/DungeonCrawler/level1.json";
+    Levelverwaltung *lv = new Levelverwaltung(s);
+    lv->einlesen();
+   // dungeon.play();
+   // app.exec();
 
 }

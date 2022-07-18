@@ -155,6 +155,11 @@ Level::Level(const Level &level) : ROW(level.ROW), COL(level.COL)
     }
 }
 
+Level::Level(int row, int col): ROW(row), COL(col)
+{
+
+}
+
 Level::~Level()
 {
     for (int i = 0; i < ROW; i++)
