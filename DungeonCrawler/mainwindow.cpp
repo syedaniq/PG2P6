@@ -15,7 +15,9 @@
 #include "switch.h"
 #include "lootchest.h"
 
-void MainWindow::Knoepfe()
+#include "levelverwaltung.h"
+
+void MainWindow::Knoepfe(Level* level)
 {
     buttons = new QGroupBox(this);
     buttons->setGeometry(800, 200, 250, 250);
@@ -99,7 +101,7 @@ void MainWindow::Knoepfe()
 
 
     saveBox = new QGroupBox(this);
-    saveBox->setGeometry(875, 475, 100, 50);
+    saveBox->setGeometry(850, 440, 150, 100);
     saveBox->setStyleSheet("border:0;");
 
     saveLayout = new QGridLayout(this);
@@ -109,10 +111,10 @@ void MainWindow::Knoepfe()
     QPushButton *saveBtn = new QPushButton(this);
     saveBtn->setIcon(g->save);
     saveLayout->addWidget(saveBtn, 0, 0);
-    saveBtn->setIconSize(QSize(150, 300));
+    saveBtn->setIconSize(QSize(160, 60));
     connect(saveBtn, &QPushButton::clicked, this,
-            [this]()
-            { g->lastInput = 7; });
+            [level]()
+            { Levelverwaltung lv; lv.einspeichern(level); });
 }
 
 void MainWindow::spielfeldSetzen(Level *level)
@@ -188,7 +190,7 @@ void MainWindow::spielfeldSetzen(Level *level)
 
     if (!drawButtons)
     {
-        Knoepfe();
+        Knoepfe(level);
         drawButtons = true;
     }
 }

@@ -10,11 +10,9 @@ using namespace nlohmann;
 class Levelverwaltung
 {
 public:
-    Levelverwaltung(std::string& dateiname);
-    void einlesen();
+    Levelverwaltung();
+    void einlesen(std::string& dateiname);
     void einspeichern(Level* level);
-private:
-    string& dateiname;
 };
 
 #endif // LEVELVERWALTUNG_H

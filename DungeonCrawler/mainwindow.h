@@ -30,7 +30,7 @@ public:
     QLabel *character;
     QLabel *zombie;
 
-    void Knoepfe();
+    void Knoepfe(Level* level);
 
 private:
     Ui::MainWindow *ui;

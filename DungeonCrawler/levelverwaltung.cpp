@@ -20,11 +20,11 @@
 #include "door.h"
 
 
-Levelverwaltung::Levelverwaltung(string &dateiname) : dateiname(dateiname)
+Levelverwaltung::Levelverwaltung()
 {
 }
 
-void Levelverwaltung::einlesen()
+void Levelverwaltung::einlesen(std::string& dateiname)
 {
     ifstream quelle(dateiname.c_str(), ios::in);
 

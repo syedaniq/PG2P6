@@ -70,9 +70,8 @@ int main(int argc, char *argv[])
     leveChanger2->setDestTile(leveChanger1);
 
     string s="/home/aniq/Documents/PG2P6/DungeonCrawler/level1.json";
-    Levelverwaltung *lv = new Levelverwaltung(s);
+    Levelverwaltung *lv = new Levelverwaltung;
     lv->einspeichern(l);
     dungeon.play();
     app.exec();
-
 }
