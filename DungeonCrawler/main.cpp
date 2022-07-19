@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     char1->setTile(l->getTile(4, 2));
     char1->getTile()->setCharacter(char1);
 
-    string muster = "66444466";
+    /*string muster = "66444466";
     GuardController *g = new GuardController(muster);
     Character *zombie = new Character("x", 1, g);
     l->getTile(5, 3)->setCharacter(zombie);
@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     Character *zombie2 = new Character("x", 1, sc, 100, 100, false);
     l->getTile(0, 4)->setCharacter(zombie2);
     zombie2->setTile(l->getTile(0, 4));
-    l->getCharacters().push_back(zombie2);
+    l->getCharacters().push_back(zombie2);*/
 
     AttackController *ac = new AttackController(l);
     Character* zombie3 = new Character("x",1,ac);
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     string s="/home/aniq/Documents/PG2P6/DungeonCrawler/level1.json";
     Levelverwaltung *lv = new Levelverwaltung(s);
     lv->einspeichern(l);
-   // dungeon.play();
-   // app.exec();
+    dungeon.play();
+    app.exec();
 
 }

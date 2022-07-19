@@ -18,7 +18,7 @@
 void MainWindow::Knoepfe()
 {
     buttons = new QGroupBox(this);
-    buttons->setGeometry(800, 250, 250, 250);
+    buttons->setGeometry(800, 200, 250, 250);
     buttons->setStyleSheet("border:0;");
 
     gridlayout2 = new QGridLayout(this);
@@ -96,6 +96,23 @@ void MainWindow::Knoepfe()
     connect(btn3, &QPushButton::clicked, this,
             [this]()
             { g->lastInput = 3; });
+
+
+    saveBox = new QGroupBox(this);
+    saveBox->setGeometry(875, 475, 100, 50);
+    saveBox->setStyleSheet("border:0;");
+
+    saveLayout = new QGridLayout(this);
+    saveLayout->setSpacing(0);
+    saveBox->setLayout(saveLayout);
+
+    QPushButton *saveBtn = new QPushButton(this);
+    saveBtn->setIcon(g->save);
+    saveLayout->addWidget(saveBtn, 0, 0);
+    saveBtn->setIconSize(QSize(150, 300));
+    connect(saveBtn, &QPushButton::clicked, this,
+            [this]()
+            { g->lastInput = 7; });
 }
 
 void MainWindow::spielfeldSetzen(Level *level)

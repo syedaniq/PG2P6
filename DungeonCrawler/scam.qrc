@@ -45,5 +45,6 @@
         <file>textures/levelchanger.png</file>
         <file>textures/victory.png</file>
         <file>textures/wasted.png</file>
+        <file>textures/save.png</file>
     </qresource>
 </RCC>

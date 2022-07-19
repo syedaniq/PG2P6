@@ -55,6 +55,7 @@ void GraphicalUI::setPixmaps()
     levelchanger = QPixmap(":/textures/levelchanger.png");
     winScreen = QPixmap(":/textures/victory.png");
     defeatScreen = QPixmap(":/textures/wasted.png");
+    save = QPixmap(":/textures/save.png");
 }
 
 void GraphicalUI::switchWindow()

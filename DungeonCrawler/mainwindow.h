@@ -39,6 +39,8 @@ private:
     QGridLayout *gridlayout = nullptr;
     QGroupBox *buttons = nullptr;
     QGridLayout *gridlayout2 = nullptr;
+    QGroupBox *saveBox = nullptr;
+    QGridLayout *saveLayout = nullptr;
     bool drawButtons = false;
 };
 
