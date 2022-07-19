@@ -29,8 +29,7 @@ int main(int argc, char *argv[])
 
     Character *char1 = new Character("x", 1, l->getController(),50, 500, true);
     l->characters.push_back(char1);
-    char1->setTile(l->getTile(4, 2));
-    char1->getTile()->setCharacter(char1);
+    l->placeCharacter(char1,4,2);
 
     /*string muster = "66444466";
     GuardController *g = new GuardController(muster);

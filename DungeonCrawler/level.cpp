@@ -154,11 +154,6 @@ Level::Level(const Level &level) : ROW(level.ROW), COL(level.COL)
     }
 }
 
-Level::Level(int row, int col): ROW(row), COL(col)
-{
-
-}
-
 int Level::getId() const
 {
     return id;
@@ -293,6 +288,9 @@ const Tile *Level::getTile(int row, int col) const
 
 void Level::placeCharacter(Character *c, int row, int col)
 {
+    c->setTile(this->getTile(row,col));
+    c->getTile()->setCharacter(c);
+    this->getCharacters().push_back(c);
     field.at(row).at(col)->setCharacter(c);
 }
 
@@ -438,4 +436,12 @@ vector<Tile*> Level::getPath(Tile *from, Tile *to)
         }
     }
     return parents;
+}
+
+Level::Level(Controller *controller, int row, int col, int id)
+    : controller(controller), ROW(row), COL(col), id(id)
+{
+    field.resize(ROW);
+    for (int i = 0; i < ROW; i++)
+        field.at(i).resize(COL);
 }

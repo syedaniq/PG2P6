@@ -40,7 +40,7 @@ public:
     void setGraph(Graph *value);
 
     vector<Tile*> getPath(Tile* from, Tile* to);
-    Level(int row, int col);
+    Level(Controller *controller, int row, int col, int id);
     int getId() const;
 
 protected:

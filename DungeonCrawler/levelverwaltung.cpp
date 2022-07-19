@@ -24,9 +24,11 @@ Levelverwaltung::Levelverwaltung()
 {
 }
 
-void Levelverwaltung::einlesen(std::string& dateiname)
+void Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
 {
     ifstream quelle(dateiname.c_str(), ios::in);
+    vector<charPos>characters;
+    vector<switchTarget>switchs;
 
      if (!quelle.good())
      {
@@ -36,21 +38,23 @@ void Levelverwaltung::einlesen(std::string& dateiname)
 
          json jFile;
          quelle >> jFile;
-         Level* l;
+         Level* level;
 
         for(const auto& item: jFile.items())
         {
            if(item.key()=="_level")
            {
-               int row, col;
+               int row, col, id;
                for(const auto& valueItem: item.value().items())
                {
                    if(valueItem.key()=="cols")
                       col = valueItem.value();
                    if(valueItem.key()=="rows")
                        row = valueItem.value();
+                   if(valueItem.key()=="id")
+                       id = valueItem.value();
                }
-               l = new Level( row, col );
+               level = new Level(gui,row,col, id);
            }
 
         }
@@ -94,9 +98,9 @@ void Levelverwaltung::einlesen(std::string& dateiname)
                             if(iwas.value() == "stationarycontroller")
                                 controller = new StationaryController;
                             if(iwas.value() == "uicontroller")
-                                controller = l->getController();
+                                controller = level->getController();
                             if(iwas.value() == "attackcontroller")
-                                controller = new AttackController(l);
+                                controller = new AttackController(level);
                         }
                         if(iwas.key() == "movement")
                         {
@@ -105,12 +109,19 @@ void Levelverwaltung::einlesen(std::string& dateiname)
                         }
                     }
                 }
-
             }
-            Character* c = new Character("x",1,controller,strength,stamina,isHuman);
-            l->getCharacters().push_back(c);
+
+            charPos cP;
+            cP.character = new Character("x",1,controller,strength,stamina,isHuman);
+            cP.col = col;
+            cP.row = row;
+            characters.push_back(cP);
+
+            //level->placeCharacter(c,row,col);
+            //level->getCharacters().push_back(c);
             cout << "END OF FILE" << endl;
         }
+
         int portalindex=0;
         int portalpair=0;
         for(const auto& item: jFile["tiles"])
@@ -121,18 +132,37 @@ void Levelverwaltung::einlesen(std::string& dateiname)
             int col=0;
             int destrow=0;
             int destcol=0;
+            int id,targetLevelID;
+            bool is_open;
+
             for(const auto& values: item.items())
             {
                 if(values.key()=="row")
                     row = values.value();
-                if(values.key()=="col")
+                else if(values.key()=="col")
                     col=values.value();
-                if(values.key()=="name")
+                else if(values.key()=="name")
                     typ = values.value();
-                if(values.key()=="destrow")
+                else if(values.key()=="destrow")
                     destrow=values.value();
-                if(values.key()=="destcol")
+                else if(values.key()=="destcol")
                     destcol=values.value();
+                else if(values.key()=="id")
+                    targetLevelID=values.value();
+                else if(values.key()=="targetLevelID")
+                    id=values.value();
+                else if(values.key()=="is_open")
+                    is_open=values.value();
+                else if(values.key()=="targets")
+                {
+                    for (const auto& target : jFile["targets"])
+                    {
+                        destcol = target["col"];
+                        destrow = target["row"];
+                    }
+                }
+                else
+                    continue;
             }
 
             if(typ=="wall")
@@ -147,7 +177,7 @@ void Levelverwaltung::einlesen(std::string& dateiname)
                 tile = new Pit(row,col);
             if(typ=="portal"){
                 portalpair++;
-                tile= new Portal(row, col, l->getTile(destrow,destcol), portalindex);
+                tile= new Portal(row, col, level->getTile(destrow,destcol), portalindex);
                 if(portalpair==2){
                     portalpair=0;
                     portalindex++;
@@ -155,10 +185,16 @@ void Levelverwaltung::einlesen(std::string& dateiname)
             }
             if(typ=="ramp")
                 tile= new Ramp(col,row);
-            if(typ =="switch")
+            if(typ =="switch") {
+                switchTarget sT;
+                sT.sourceCol = col;
+                sT.sourceRow = row;
+                sT.targetCol = destcol;
+                sT.targetRow = destrow;
+                switchs.push_back(sT);
                 tile = new Switch(row, col);
-
-            l->getField().at(row).at(col)= tile;
+            }
+            level->getField().at(row).at(col)= tile;
         }
          quelle.close();
 }
@@ -170,7 +206,7 @@ void Levelverwaltung::einspeichern(Level *level)
     j["_level"]["cols"] = level->getCOL();
     string name = "level";
     name.append(to_string(level->getCOL()/level->getROW()));
-    j["_level"]["name"] = name;
+    j["_level"]["id"] = level->getId();
     j["_level"]["rows"] = level->getROW();
 
     j["characters"] = json::array();
