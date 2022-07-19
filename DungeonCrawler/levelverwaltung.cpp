@@ -50,7 +50,7 @@ void Levelverwaltung::einlesen()
                    if(valueItem.key()=="rows")
                        row = valueItem.value();
                }
-               l = new Level(row,col);
+               l = new Level( row, col );
            }
 
         }
@@ -111,8 +111,58 @@ void Levelverwaltung::einlesen()
             l->getCharacters().push_back(c);
             cout << "END OF FILE" << endl;
         }
-        quelle.close();
+        int portalindex=0;
+        int portalpair=0;
+        for(const auto& item: jFile["tiles"])
+        {
+            Tile* tile;
+            string typ="";
+            int row=0;
+            int col=0;
+            int destrow=0;
+            int destcol=0;
+            for(const auto& values: item.items())
+            {
+                if(values.key()=="row")
+                    row = values.value();
+                if(values.key()=="col")
+                    col=values.value();
+                if(values.key()=="name")
+                    typ = values.value();
+                if(values.key()=="destrow")
+                    destrow=values.value();
+                if(values.key()=="destcol")
+                    destcol=values.value();
+            }
+
+            if(typ=="wall")
+               tile = new Wall(row,col);
+            if(typ=="door")
+                tile = new Door(row,col);
+            if(typ=="floor")
+                tile= new Floor(row,col);
+            if(typ =="treasure")
+                tile = new Lootchest(row,col, nullptr);
+            if(typ=="pit")
+                tile = new Pit(row,col);
+            if(typ=="portal"){
+                portalpair++;
+                tile= new Portal(row, col, l->getTile(destrow,destcol), portalindex);
+                if(portalpair==2){
+                    portalpair=0;
+                    portalindex++;
+                }
+            }
+            if(typ=="ramp")
+                tile= new Ramp(col,row);
+            if(typ =="switch")
+                tile = new Switch(row, col);
+
+            l->getField().at(row).at(col)= tile;
+        }
+         quelle.close();
 }
+
 
 void Levelverwaltung::einspeichern(Level *level)
 {
