@@ -1,0 +1,119 @@
+{
+  "_level": {
+    "cols": 4,
+    "name": "level2",
+    "rows": 4
+  },
+  "characters": [],
+  "tiles": [
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "destLevelIndex": 0,
+      "id": 0,
+      "name": "levelchanger",
+      "row": 0,
+      "targetLevelName": "level1",
+      "targets": [
+        {
+          "type": "dungeoncrawler"
+        }
+      ],
+      "texture": "levelchanger"
+    },
+    {
+      "col": 2,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 3,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 1,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "name": "floor",
+      "row": 1,
+      "texture": "floor"
+    },
+    {
+      "col": 2,
+      "name": "floor",
+      "row": 1,
+      "texture": "floor"
+    },
+    {
+      "col": 3,
+      "name": "wall",
+      "row": 1,
+      "texture": "wall"
+    },
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 2,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "name": "floor",
+      "row": 2,
+      "texture": "floor"
+    },
+    {
+      "col": 2,
+      "name": "treasure",
+      "row": 2,
+      "targets": [
+        {
+          "type": "dungeoncrawler"
+        }
+      ],
+      "texture": "treasure"
+    },
+    {
+      "col": 3,
+      "name": "wall",
+      "row": 2,
+      "texture": "wall"
+    },
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 3,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "name": "wall",
+      "row": 3,
+      "texture": "wall"
+    },
+    {
+      "col": 2,
+      "name": "wall",
+      "row": 3,
+      "texture": "wall"
+    },
+    {
+      "col": 3,
+      "name": "wall",
+      "row": 3,
+      "texture": "wall"
+    }
+  ]
+}

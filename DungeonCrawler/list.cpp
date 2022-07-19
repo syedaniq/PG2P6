@@ -143,6 +143,21 @@ List::iterator List::end()
     return current;
 }
 
+Level *List::at(int i)
+{
+    if(i>m_size)
+        return nullptr;
+    int index=0;
+    Element* current = start;
+    while(index != i)
+    {
+        current = current->next;
+        index++;
+
+    }
+    return current->data;
+}
+
 List::iterator::iterator(List::Element *element) : element(element)
 {
 }

@@ -16,7 +16,7 @@ void DungeonCrawler::play()
     // 1. moveAufruf für jede Figur
     while (1)
     {
-        currentLevel->getGraph()->update();
+        //currentLevel->getGraph()->update();
         abstractUI->draw(currentLevel);
 
         int richtung;
@@ -88,6 +88,11 @@ void DungeonCrawler::play()
                     {
                         if (who)
                         {
+                            if(typeid (currentLevel->getTile(currentRow + newRow, currentCol + newCol)) == typeid(LevelChanger))
+                            {
+                                LevelChanger *lc = dynamic_cast<LevelChanger*>(currentLevel->getTile(currentRow + newRow, currentCol + newCol));
+                                lc->setToLevel(levels.at(lc->getDestLevelIndex()));
+                            }
                             who->getTile()->moveTo(currentLevel->getTile(currentRow + newRow, currentCol + newCol), who);
                             mainHasMoved = true;
 

@@ -100,8 +100,8 @@ Level::Level(const Level &level) : ROW(level.ROW), COL(level.COL)
             else if (typeid(field.at(i).at(j)) == typeid(LevelChanger))
             {
                 LevelChanger *oldlc = dynamic_cast<LevelChanger *>(field.at(i).at(j));
-                LevelChanger *l = new LevelChanger(oldlc->getToLevel(), oldlc->getDestTile(), i, j);
-                field.at(i).push_back(l);
+                //LevelChanger *l = new LevelChanger(oldlc->getToLevel(), oldlc->getDestTile(), i, j);
+                //field.at(i).push_back(l);
             }
         }
     }
@@ -222,8 +222,8 @@ Level &Level::operator=(const Level &level)
             }
             else if (typeid(field.at(i).at(j)) == typeid(LevelChanger))
             {
-                LevelChanger *l = new LevelChanger(nullptr, nullptr, i, j);
-                field.at(i).push_back(l);
+                //LevelChanger *l = new LevelChanger(nullptr, nullptr, i, j);
+                //field.at(i).push_back(l);
             }
         }
     }

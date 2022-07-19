@@ -22,14 +22,14 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     GraphicalUI *gui = new GraphicalUI;
-    Level *l = new Level(gui, 0);
+    /*Level *l = new Level(gui, 0);
     Level *level2 = new Level(gui, 2);
 
     level2->field.at(3).at(3) = new Lootchest(3, 3, gui);
 
     Character *char1 = new Character("x", 1, l->getController(),50, 500, true);
     l->characters.push_back(char1);
-    l->placeCharacter(char1,4,2);
+    l->placeCharacter(char1,4,2);*/
 
     /*string muster = "66444466";
     GuardController *g = new GuardController(muster);
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
     zombie2->setTile(l->getTile(0, 4));
     l->getCharacters().push_back(zombie2);*/
 
-    AttackController *ac = new AttackController(l);
+    /*AttackController *ac = new AttackController(l);
     Character* zombie3 = new Character("x",1,ac);
     l->getTile(0,5)->setCharacter(zombie3);
     zombie3->setTile(l->getTile(0,5));
@@ -58,19 +58,21 @@ int main(int argc, char *argv[])
     delete level2->field.at(0).at(4);
     level2->field.at(0).at(4) = leveChanger2;
 
-    DungeonCrawler dungeon(gui, l);
 
-    dungeon.addLevel(l);
     dungeon.addLevel(level2);
 
     leveChanger1->attach(&dungeon);
     leveChanger2->attach(&dungeon);
     leveChanger1->setDestTile(leveChanger2);
-    leveChanger2->setDestTile(leveChanger1);
+    leveChanger2->setDestTile(leveChanger1);*/
 
-    string s="/home/aniq/Documents/PG2P6/DungeonCrawler/level1.json";
+
+
+    string s="C:\\Users\\aniq\\Desktop\\PG2P5\\PG2P6\\DungeonCrawler\\level1.json";
     Levelverwaltung *lv = new Levelverwaltung;
-    lv->einspeichern(l);
+    //lv->einspeichern(l);
+    Level* l = lv->einlesen(s,gui);
+    DungeonCrawler dungeon(gui, l);
     dungeon.play();
     app.exec();
 }

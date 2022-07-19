@@ -457,6 +457,8 @@
       "col": 8,
       "destcol": 1,
       "destrow": 0,
+      "id": 0,
+      "destLevelIndex": 1,
       "name": "levelchanger",
       "row": 6,
       "targetLevelName": "level2",

@@ -39,6 +39,7 @@ public:
     void remove(Level *l);
     iterator begin();
     iterator end();
+    Level* at(int i);
 
 private:
     Element *start = nullptr;

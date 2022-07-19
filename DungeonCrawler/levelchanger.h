@@ -8,7 +8,7 @@
 class LevelChanger : public Tile, public Active
 {
 public:
-    LevelChanger(Level *toLevel, Tile *destTile, int row, int col);
+    LevelChanger(int row, int col, int id, int destLevelIndex);
 
     // Active interface
 public:
@@ -27,9 +27,20 @@ public:
     Tile *getDestTile() const;
     void setDestTile(Tile *newDestTile);
 
+    int getTargetID() const;
+    void setTargetID(int value);
+
+    int getDestLevelIndex() const;
+    void setDestLevelIndex(int value);
+
+    int getId() const;
+    void setId(int value);
+
 private:
     Level *toLevel;
     Tile *destTile;
+    int targetID;
+    int id, destLevelIndex;
 };
 
 #endif // LEVELCHANGER_H

@@ -24,11 +24,12 @@ Levelverwaltung::Levelverwaltung()
 {
 }
 
-void Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
+Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
 {
     ifstream quelle(dateiname.c_str(), ios::in);
-    vector<charPos>characters;
+    vector<charPos*>characters;
     vector<switchTarget>switchs;
+    vector<portalConnect>portale;
 
      if (!quelle.good())
      {
@@ -39,6 +40,7 @@ void Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
          json jFile;
          quelle >> jFile;
          Level* level;
+         quelle.close();
 
         for(const auto& item: jFile.items())
         {
@@ -111,10 +113,11 @@ void Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
                 }
             }
 
-            charPos cP;
-            cP.character = new Character("x",1,controller,strength,stamina,isHuman);
-            cP.col = col;
-            cP.row = row;
+            charPos* cP = new charPos;
+            Character* c = new Character("x",1,controller,strength,stamina,isHuman);
+            cP->character = c;
+            cP->col = col;
+            cP->row = row;
             characters.push_back(cP);
 
             //level->placeCharacter(c,row,col);
@@ -122,8 +125,6 @@ void Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
             cout << "END OF FILE" << endl;
         }
 
-        int portalindex=0;
-        int portalpair=0;
         for(const auto& item: jFile["tiles"])
         {
             Tile* tile;
@@ -132,8 +133,8 @@ void Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
             int col=0;
             int destrow=0;
             int destcol=0;
-            int id,targetLevelID;
-            bool is_open;
+            int id = 0,targetLevelID = 0,portalType = 0,destLevelIndex = 0;
+            bool is_open = 0;
 
             for(const auto& values: item.items())
             {
@@ -153,6 +154,10 @@ void Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
                     id=values.value();
                 else if(values.key()=="is_open")
                     is_open=values.value();
+                else if(values.key() == "portalType")
+                    portalType=values.value();
+                else if(values.key() == "destLevelIndex")
+                    destLevelIndex=values.value();
                 else if(values.key()=="targets")
                 {
                     for (const auto& target : jFile["targets"])
@@ -176,12 +181,11 @@ void Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
             if(typ=="pit")
                 tile = new Pit(row,col);
             if(typ=="portal"){
-                portalpair++;
-                tile= new Portal(row, col, level->getTile(destrow,destcol), portalindex);
-                if(portalpair==2){
-                    portalpair=0;
-                    portalindex++;
-                }
+                portalConnect pC;
+                pC.source = new Portal(row, col, nullptr, portalType);
+                pC.targetCol = col;
+                pC.targetRow = row;
+                tile = pC.source;
             }
             if(typ=="ramp")
                 tile= new Ramp(col,row);
@@ -194,9 +198,18 @@ void Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
                 switchs.push_back(sT);
                 tile = new Switch(row, col);
             }
+            if(typ == "levelchanger")
+            {
+                tile = new LevelChanger(row,col,id,destLevelIndex);
+            }
             level->getField().at(row).at(col)= tile;
         }
-         quelle.close();
+
+        for(auto& chars : characters)
+        {
+            level->placeCharacter(chars->character,chars->row,chars->col);
+        }
+        return level;
 }
 
 
@@ -280,7 +293,8 @@ void Levelverwaltung::einspeichern(Level *level)
                                       {"destrow", d->getDestination()->getRow()},
                                       {"name", tileName},
                                       {"row", level->getTile(a,b)->getRow()},
-                                      {"texture", tileName}
+                                      {"texture", tileName},
+                                      {"portalType", d->getPortalType()}
                                      });
                 continue;
             }
@@ -294,7 +308,9 @@ void Levelverwaltung::einspeichern(Level *level)
                                       {"name", tileName},
                                       {"row", level->getTile(a,b)->getRow()},
                                       {"targetLevelID", d->getToLevel()->getId()},
-                                      {"texture", tileName}
+                                      {"texture", tileName},
+                                      {"destLevelIndex", d->getDestLevelIndex()},
+                                      {"id", d->getId()}
                                      });
                 continue;
             }

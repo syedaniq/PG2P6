@@ -5,7 +5,7 @@
 #include <string>
 #include "level.h"
 #include "graphicalui.h"
-
+class Portal;
 using namespace std;
 using namespace nlohmann;
 
@@ -24,8 +24,13 @@ public:
         int targetRow, targetCol;
     };
 
+    struct portalConnect {
+        Portal* source;
+        int targetRow, targetCol;
+    };
+
     Levelverwaltung();
-    void einlesen(std::string& dateiname, GraphicalUI* gui);
+    Level* einlesen(std::string& dateiname, GraphicalUI* gui);
     void einspeichern(Level* level);
 };
 

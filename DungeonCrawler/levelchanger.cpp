@@ -1,7 +1,7 @@
 #include "levelchanger.h"
 
-LevelChanger::LevelChanger(Level *toLevel, Tile *destTile, int row, int col)
-    : Tile(row, col), toLevel(toLevel), destTile(destTile)
+LevelChanger::LevelChanger(int row, int col, int id, int destLevelIndex)
+    : Tile(row,col), id(id), destLevelIndex(destLevelIndex)
 {
     this->texture = "L";
     this->character = nullptr;
@@ -44,11 +44,26 @@ string LevelChanger::getTexture()
 
 Tile *LevelChanger::onEnter(Tile *fromTile, Character *who)
 {
-    if(who) {
-        activate();
-        return destTile;
-    } else
+
+    if (!who)
         return nullptr;
+
+    for (int i = 0; i< toLevel->getROW(); i++)
+    {
+        for (int j = 0; j < toLevel->getCOL(); j++)
+        {
+            Tile* tmp = toLevel->getTile(i, j);
+            if (typeid(*tmp) == typeid(LevelChanger))
+            {
+                LevelChanger* destLevelChanger = dynamic_cast<LevelChanger*>(tmp);
+                if (destLevelChanger->getId() == this->getId())
+                {
+                    activate();
+                    return tmp;
+                }
+            }
+        }
+    }
 }
 
 Tile *LevelChanger::onLeave(Tile *destTile, Character *who)
@@ -74,4 +89,34 @@ Tile *LevelChanger::getDestTile() const
 void LevelChanger::setDestTile(Tile *newDestTile)
 {
     destTile = newDestTile;
+}
+
+int LevelChanger::getTargetID() const
+{
+    return targetID;
+}
+
+void LevelChanger::setTargetID(int value)
+{
+    targetID = value;
+}
+
+int LevelChanger::getDestLevelIndex() const
+{
+    return destLevelIndex;
+}
+
+void LevelChanger::setDestLevelIndex(int value)
+{
+    destLevelIndex = value;
+}
+
+int LevelChanger::getId() const
+{
+    return id;
+}
+
+void LevelChanger::setId(int value)
+{
+    id = value;
 }
