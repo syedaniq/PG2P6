@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 
 
 
-    string s="C:\\Users\\aniq\\Desktop\\PG2P5\\PG2P6\\DungeonCrawler\\level1.json";
+    string s="/home/aniq/Documents/PG2P6/DungeonCrawler/level1.json";
     Levelverwaltung *lv = new Levelverwaltung;
     //lv->einspeichern(l);
     Level* l = lv->einlesen(s,gui);

@@ -2,6 +2,7 @@
 
 Pit::Pit(int row, int col) : Tile(row, col)
 {
+    this->texture = "_";
 }
 
 string Pit::getTexture()

@@ -4,6 +4,7 @@
 Door::Door(int row, int col) : Tile(row, col)
 {
     open = false;
+    this->texture = "X";
 }
 
 void Door::notify(Active *source)

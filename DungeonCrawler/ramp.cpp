@@ -2,6 +2,7 @@
 
 Ramp::Ramp(int row, int col) : Tile(row, col)
 {
+    this->texture = ">";
 }
 
 string Ramp::getTexture()
