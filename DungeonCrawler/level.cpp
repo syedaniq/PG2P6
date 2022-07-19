@@ -46,19 +46,6 @@ Level::Level(Controller *controller, int x)
                 field.at(i).push_back(new Floor(i, j));
         }
     }
-
-    Character *char1 = new Character("x", 1, this->getController(),50, 500, true);
-    this->characters.push_back(char1);
-    char1->setTile(this->getTile(4, 2));
-    char1->getTile()->setCharacter(char1);
-
-    string muster = "66444466";
-    GuardController *g = new GuardController(muster);
-    Character *zombie = new Character("x", 1, g);
-    this->getTile(5, 3)->setCharacter(zombie);
-    zombie->setTile(this->getTile(5, 3));
-    this->getCharacters().push_back(zombie);
-
     graph = new Graph(this);
 }
 

@@ -20,7 +20,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-   /* QApplication app(argc, argv);
+    QApplication app(argc, argv);
     GraphicalUI *gui = new GraphicalUI;
     Level *l = new Level(gui, 0);
     Level *level2 = new Level(gui, 2);
@@ -30,9 +30,9 @@ int main(int argc, char *argv[])
     Character *char1 = new Character("x", 1, l->getController(),50, 500, true);
     l->characters.push_back(char1);
     char1->setTile(l->getTile(4, 2));
-    char1->getTile()->setCharacter(char1);*/
+    char1->getTile()->setCharacter(char1);
 
-    /*string muster = "66444466";
+    string muster = "66444466";
     GuardController *g = new GuardController(muster);
     Character *zombie = new Character("x", 1, g);
     l->getTile(5, 3)->setCharacter(zombie);
@@ -43,9 +43,9 @@ int main(int argc, char *argv[])
     Character *zombie2 = new Character("x", 1, sc, 100, 100, false);
     l->getTile(0, 4)->setCharacter(zombie2);
     zombie2->setTile(l->getTile(0, 4));
-    l->getCharacters().push_back(zombie2);*/
+    l->getCharacters().push_back(zombie2);
 
- /*   AttackController *ac = new AttackController(l);
+    AttackController *ac = new AttackController(l);
     Character* zombie3 = new Character("x",1,ac);
     l->getTile(0,5)->setCharacter(zombie3);
     zombie3->setTile(l->getTile(0,5));
@@ -67,12 +67,9 @@ int main(int argc, char *argv[])
     leveChanger1->attach(&dungeon);
     leveChanger2->attach(&dungeon);
     leveChanger1->setDestTile(leveChanger2);
-    leveChanger2->setDestTile(leveChanger1);*/
-    string s="/home/aniq/Documents/PG2P6/DungeonCrawler/level1.json";
-    QApplication app(argc, argv);
-    GraphicalUI *gui = new GraphicalUI;
-    Level *l = new Level(gui, 0);
+    leveChanger2->setDestTile(leveChanger1);
 
+    string s="/home/aniq/Documents/PG2P6/DungeonCrawler/level1.json";
     Levelverwaltung *lv = new Levelverwaltung(s);
     lv->einspeichern(l);
    // dungeon.play();
