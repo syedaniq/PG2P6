@@ -40,8 +40,9 @@ public:
     void setGraph(Graph *value);
 
     vector<Tile*> getPath(Tile* from, Tile* to);
+    Level(int row, int col);
+    int getId() const;
 
-    Level(Controller* controller, int row, int col);
 protected:
     const int ROW;
     const int COL;
@@ -50,6 +51,7 @@ private:
     Controller *controller;
     Graph *graph;
     bool ersterZug = true;
+    int id;
 };
 
 #endif // LEVEL_H

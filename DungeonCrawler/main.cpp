@@ -69,8 +69,12 @@ int main(int argc, char *argv[])
     leveChanger1->setDestTile(leveChanger2);
     leveChanger2->setDestTile(leveChanger1);*/
     string s="/home/aniq/Documents/PG2P6/DungeonCrawler/level1.json";
+    QApplication app(argc, argv);
+    GraphicalUI *gui = new GraphicalUI;
+    Level *l = new Level(gui, 0);
+
     Levelverwaltung *lv = new Levelverwaltung(s);
-    lv->einlesen();
+    lv->einspeichern(l);
    // dungeon.play();
    // app.exec();
 

@@ -12,9 +12,9 @@
 
 #include "attackcontroller.h"
 #include <queue>
-
+#include "guardcontroller.h"
 Level::Level(Controller *controller, int x)
-    : ROW(6), COL(6), controller(controller)
+    :  ROW(6), COL(6), controller(controller), id(x)
 {
     field.resize(ROW);
     Door *d = new Door(0, 0);
@@ -46,6 +46,18 @@ Level::Level(Controller *controller, int x)
                 field.at(i).push_back(new Floor(i, j));
         }
     }
+
+    Character *char1 = new Character("x", 1, this->getController(),50, 500, true);
+    this->characters.push_back(char1);
+    char1->setTile(this->getTile(4, 2));
+    char1->getTile()->setCharacter(char1);
+
+    string muster = "66444466";
+    GuardController *g = new GuardController(muster);
+    Character *zombie = new Character("x", 1, g);
+    this->getTile(5, 3)->setCharacter(zombie);
+    zombie->setTile(this->getTile(5, 3));
+    this->getCharacters().push_back(zombie);
 
     graph = new Graph(this);
 }
@@ -158,6 +170,11 @@ Level::Level(const Level &level) : ROW(level.ROW), COL(level.COL)
 Level::Level(int row, int col): ROW(row), COL(col)
 {
 
+}
+
+int Level::getId() const
+{
+    return id;
 }
 
 Level::~Level()
