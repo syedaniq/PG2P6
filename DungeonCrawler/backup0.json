@@ -1,0 +1,651 @@
+{
+  "_level": {
+    "cols": 10,
+    "id": 0,
+    "rows": 10
+  },
+  "characters": [
+    {
+      "col": 8,
+      "controller": {
+        "name": "uicontroller"
+      },
+      "hp": 120,
+      "row": 8,
+      "stamina": 20,
+      "strength": 20,
+      "texture": "hero"
+    },
+    {
+      "col": 7,
+      "controller": {
+        "name": "attackcontroller"
+      },
+      "hp": 270,
+      "row": 5,
+      "stamina": 50,
+      "strength": 50,
+      "texture": "goblin"
+    }
+  ],
+  "tiles": [
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 2,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 3,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 4,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 5,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 6,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 7,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 8,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 9,
+      "name": "wall",
+      "row": 0,
+      "texture": "wall"
+    },
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 1,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "destcol": 1,
+      "destrow": 7,
+      "name": "portal",
+      "portalType": 0,
+      "row": 1,
+      "texture": "portal"
+    },
+    {
+      "col": 2,
+      "name": "floor",
+      "row": 1,
+      "texture": "floor"
+    },
+    {
+      "col": 3,
+      "name": "floor",
+      "row": 1,
+      "texture": "floor"
+    },
+    {
+      "col": 4,
+      "name": "floor",
+      "row": 1,
+      "texture": "floor"
+    },
+    {
+      "col": 5,
+      "name": "floor",
+      "row": 1,
+      "texture": "floor"
+    },
+    {
+      "col": 6,
+      "name": "floor",
+      "row": 1,
+      "texture": "floor"
+    },
+    {
+      "col": 7,
+      "name": "floor",
+      "row": 1,
+      "texture": "floor"
+    },
+    {
+      "col": 8,
+      "name": "floor",
+      "row": 1,
+      "texture": "floor"
+    },
+    {
+      "col": 9,
+      "name": "wall",
+      "row": 1,
+      "texture": "wall"
+    },
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 2,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "name": "floor",
+      "row": 2,
+      "texture": "floor"
+    },
+    {
+      "col": 2,
+      "name": "floor",
+      "row": 2,
+      "texture": "floor"
+    },
+    {
+      "col": 3,
+      "name": "floor",
+      "row": 2,
+      "texture": "floor"
+    },
+    {
+      "col": 4,
+      "name": "ramp",
+      "row": 2,
+      "texture": "ramp"
+    },
+    {
+      "col": 5,
+      "name": "floor",
+      "row": 2,
+      "texture": "floor"
+    },
+    {
+      "col": 6,
+      "name": "floor",
+      "row": 2,
+      "texture": "floor"
+    },
+    {
+      "col": 7,
+      "name": "floor",
+      "row": 2,
+      "texture": "floor"
+    },
+    {
+      "col": 8,
+      "name": "floor",
+      "row": 2,
+      "texture": "floor"
+    },
+    {
+      "col": 9,
+      "name": "wall",
+      "row": 2,
+      "texture": "wall"
+    },
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 3,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "name": "floor",
+      "row": 3,
+      "texture": "floor"
+    },
+    {
+      "col": 2,
+      "name": "floor",
+      "row": 3,
+      "texture": "floor"
+    },
+    {
+      "col": 3,
+      "name": "pit",
+      "row": 3,
+      "texture": "pit"
+    },
+    {
+      "col": 4,
+      "name": "pit",
+      "row": 3,
+      "texture": "pit"
+    },
+    {
+      "col": 5,
+      "name": "pit",
+      "row": 3,
+      "texture": "pit"
+    },
+    {
+      "col": 6,
+      "name": "floor",
+      "row": 3,
+      "texture": "floor"
+    },
+    {
+      "col": 7,
+      "name": "floor",
+      "row": 3,
+      "texture": "floor"
+    },
+    {
+      "col": 8,
+      "name": "floor",
+      "row": 3,
+      "texture": "floor"
+    },
+    {
+      "col": 9,
+      "name": "wall",
+      "row": 3,
+      "texture": "wall"
+    },
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 4,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "name": "floor",
+      "row": 4,
+      "texture": "floor"
+    },
+    {
+      "col": 2,
+      "name": "floor",
+      "row": 4,
+      "texture": "floor"
+    },
+    {
+      "col": 3,
+      "name": "pit",
+      "row": 4,
+      "texture": "pit"
+    },
+    {
+      "col": 4,
+      "name": "pit",
+      "row": 4,
+      "texture": "pit"
+    },
+    {
+      "col": 5,
+      "name": "pit",
+      "row": 4,
+      "texture": "pit"
+    },
+    {
+      "col": 6,
+      "name": "floor",
+      "row": 4,
+      "texture": "floor"
+    },
+    {
+      "col": 7,
+      "name": "floor",
+      "row": 4,
+      "texture": "floor"
+    },
+    {
+      "col": 8,
+      "name": "floor",
+      "row": 4,
+      "texture": "floor"
+    },
+    {
+      "col": 9,
+      "name": "wall",
+      "row": 4,
+      "texture": "wall"
+    },
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 5,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "name": "floor",
+      "row": 5,
+      "texture": "floor"
+    },
+    {
+      "col": 2,
+      "name": "floor",
+      "row": 5,
+      "texture": "floor"
+    },
+    {
+      "col": 3,
+      "name": "floor",
+      "row": 5,
+      "texture": "floor"
+    },
+    {
+      "col": 4,
+      "name": "floor",
+      "row": 5,
+      "texture": "floor"
+    },
+    {
+      "col": 5,
+      "name": "floor",
+      "row": 5,
+      "texture": "floor"
+    },
+    {
+      "col": 6,
+      "name": "floor",
+      "row": 5,
+      "texture": "floor"
+    },
+    {
+      "col": 7,
+      "name": "floor",
+      "row": 5,
+      "texture": "floor"
+    },
+    {
+      "col": 8,
+      "name": "wall",
+      "row": 5,
+      "texture": "wall"
+    },
+    {
+      "col": 9,
+      "name": "wall",
+      "row": 5,
+      "texture": "wall"
+    },
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 6,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "name": "wall",
+      "row": 6,
+      "texture": "wall"
+    },
+    {
+      "col": 2,
+      "name": "wall",
+      "row": 6,
+      "texture": "wall"
+    },
+    {
+      "col": 3,
+      "name": "wall",
+      "row": 6,
+      "texture": "wall"
+    },
+    {
+      "col": 4,
+      "name": "wall",
+      "row": 6,
+      "texture": "wall"
+    },
+    {
+      "col": 5,
+      "name": "wall",
+      "row": 6,
+      "texture": "wall"
+    },
+    {
+      "col": 6,
+      "is_open": true,
+      "name": "door",
+      "row": 6,
+      "texture": "door"
+    },
+    {
+      "col": 7,
+      "name": "wall",
+      "row": 6,
+      "texture": "wall"
+    },
+    {
+      "col": 8,
+      "destLevelIndex": 1,
+      "destcol": 1,
+      "destrow": 0,
+      "id": 0,
+      "name": "levelchanger",
+      "row": 6,
+      "texture": "levelchanger"
+    },
+    {
+      "col": 9,
+      "name": "wall",
+      "row": 6,
+      "texture": "wall"
+    },
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 7,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "destcol": 1,
+      "destrow": 1,
+      "name": "portal",
+      "portalType": 0,
+      "row": 7,
+      "texture": "portal"
+    },
+    {
+      "col": 2,
+      "name": "floor",
+      "row": 7,
+      "texture": "floor"
+    },
+    {
+      "col": 3,
+      "name": "floor",
+      "row": 7,
+      "texture": "floor"
+    },
+    {
+      "col": 4,
+      "name": "floor",
+      "row": 7,
+      "texture": "floor"
+    },
+    {
+      "col": 5,
+      "name": "floor",
+      "row": 7,
+      "texture": "floor"
+    },
+    {
+      "col": 6,
+      "name": "floor",
+      "row": 7,
+      "texture": "floor"
+    },
+    {
+      "col": 7,
+      "name": "floor",
+      "row": 7,
+      "texture": "floor"
+    },
+    {
+      "col": 8,
+      "name": "floor",
+      "row": 7,
+      "texture": "floor"
+    },
+    {
+      "col": 9,
+      "name": "wall",
+      "row": 7,
+      "texture": "wall"
+    },
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 8,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "name": "floor",
+      "row": 8,
+      "texture": "floor"
+    },
+    {
+      "col": 2,
+      "name": "floor",
+      "row": 8,
+      "texture": "floor"
+    },
+    {
+      "col": 3,
+      "name": "floor",
+      "row": 8,
+      "texture": "floor"
+    },
+    {
+      "col": 4,
+      "name": "switch",
+      "row": 8,
+      "targets": [
+        {
+          "col": 6,
+          "row": 6,
+          "type": "door"
+        }
+      ],
+      "texture": "switch"
+    },
+    {
+      "col": 5,
+      "name": "floor",
+      "row": 8,
+      "texture": "floor"
+    },
+    {
+      "col": 6,
+      "name": "floor",
+      "row": 8,
+      "texture": "floor"
+    },
+    {
+      "col": 7,
+      "name": "floor",
+      "row": 8,
+      "texture": "floor"
+    },
+    {
+      "col": 8,
+      "name": "floor",
+      "row": 8,
+      "texture": "floor"
+    },
+    {
+      "col": 9,
+      "name": "wall",
+      "row": 8,
+      "texture": "wall"
+    },
+    {
+      "col": 0,
+      "name": "wall",
+      "row": 9,
+      "texture": "wall"
+    },
+    {
+      "col": 1,
+      "name": "wall",
+      "row": 9,
+      "texture": "wall"
+    },
+    {
+      "col": 2,
+      "name": "wall",
+      "row": 9,
+      "texture": "wall"
+    },
+    {
+      "col": 3,
+      "name": "wall",
+      "row": 9,
+      "texture": "wall"
+    },
+    {
+      "col": 4,
+      "name": "wall",
+      "row": 9,
+      "texture": "wall"
+    },
+    {
+      "col": 5,
+      "name": "wall",
+      "row": 9,
+      "texture": "wall"
+    },
+    {
+      "col": 6,
+      "name": "wall",
+      "row": 9,
+      "texture": "wall"
+    },
+    {
+      "col": 7,
+      "name": "wall",
+      "row": 9,
+      "texture": "wall"
+    },
+    {
+      "col": 8,
+      "name": "wall",
+      "row": 9,
+      "texture": "wall"
+    },
+    {
+      "col": 9,
+      "name": "wall",
+      "row": 9,
+      "texture": "wall"
+    }
+  ]
+}

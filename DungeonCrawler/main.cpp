@@ -20,8 +20,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    GraphicalUI *gui = new GraphicalUI;
+
     /*Level *l = new Level(gui, 0);
     Level *level2 = new Level(gui, 2);
 
@@ -65,10 +64,14 @@ int main(int argc, char *argv[])
     leveChanger2->attach(&dungeon);
     leveChanger1->setDestTile(leveChanger2);
     leveChanger2->setDestTile(leveChanger1);*/
-
-
+ char eingabe;
+    cout << "Spielstand Laden?- Geben Sie L ein für Level Laden oder N für neues Spiel: ";
+            cin >> eingabe;
+    if(eingabe =='L'){
+        QApplication app(argc, argv);
+        GraphicalUI *gui = new GraphicalUI;
     DungeonCrawler* dungeon = new DungeonCrawler(gui);
-    string s="/home/hamoudi/Uni/PG2/PG2P6/DungeonCrawler/level1.json";
+    string s="backup0.json";
     Levelverwaltung *lv = new Levelverwaltung;
     //lv->einspeichern(l);
     Level* l = lv->einlesen(s,gui,dungeon);
@@ -76,7 +79,7 @@ int main(int argc, char *argv[])
     l->setGraph(graph);
     dungeon->addLevel(l);
     dungeon->setLevel(l);
-    s="/home/hamoudi/Uni/PG2/PG2P6/DungeonCrawler/level2.json";
+    s="backup1.json";
 
     l = lv->einlesen(s,nullptr,dungeon);
     graph = new Graph(l);
@@ -85,4 +88,27 @@ int main(int argc, char *argv[])
 
     dungeon->play();
     app.exec();
+    }
+            if(eingabe='N'){
+                QApplication app(argc, argv);
+                GraphicalUI *gui = new GraphicalUI;
+                DungeonCrawler* dungeon = new DungeonCrawler(gui);
+                string s=":/level1.json";
+                Levelverwaltung *lv = new Levelverwaltung;
+                //lv->einspeichern(l);
+                Level* l = lv->einlesen(s,gui,dungeon);
+                Graph* graph = new Graph(l);
+                l->setGraph(graph);
+                dungeon->addLevel(l);
+                dungeon->setLevel(l);
+                s=":/level2.json";
+
+                l = lv->einlesen(s,nullptr,dungeon);
+                graph = new Graph(l);
+                l->setGraph(graph);
+                dungeon->addLevel(l);
+
+                dungeon->play();
+                app.exec();
+            }
 }
