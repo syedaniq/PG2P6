@@ -262,6 +262,12 @@ void MainWindow::updateField(Level *level)
                     gridlayout->addWidget(character, i, j);
                     character->raise();
                 }
+                else if(typeid(*level->getTile(i, j)->getCharacter()->getController()) == typeid(AttackController))
+                {
+                    gridlayout->removeWidget(goblin);
+                    gridlayout->addWidget(goblin, i, j);
+                    goblin->raise();
+                }
                 else
                 {
                     gridlayout->removeWidget(zombie);

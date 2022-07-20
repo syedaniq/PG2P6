@@ -19,7 +19,8 @@ public:
     void switchWindow();
 
 public:
-    QPixmap startScreen, newGame, bloodyFrame, pit, ramp, switchTile, charComplete, chest, levelchanger, winScreen, defeatScreen, save, goblin;
+    QPixmap startScreen, newGame, bloodyFrame, pit, ramp, switchTile, charComplete, chest, levelchanger, winScreen, defeatScreen, save,
+    goblin, goblin_up, goblin_left, goblin_right;
     QVector<QPixmap> arrows, back, front, left, right, doors, floor, portal, wall, zombie;
     int lastInput = 10;
     void levelSwitchInit();

@@ -57,6 +57,9 @@ void GraphicalUI::setPixmaps()
     defeatScreen = QPixmap(":/textures/wasted.png");
     save = QPixmap(":/textures/save.png");
     goblin = QPixmap(":/textures/goblin_down.png");
+    goblin_up = QPixmap(":/textures/goblin_up.png");
+    goblin_right = QPixmap(":/textures/goblin_right.png");
+    goblin_left = QPixmap(":/textures/goblin_left.png");
 }
 
 void GraphicalUI::switchWindow()

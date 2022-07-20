@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 
 
     DungeonCrawler* dungeon = new DungeonCrawler(gui);
-    string s="/home/hamoudi/Uni/PG2/PG2P6/DungeonCrawler/level1.json";
+    string s="C:\\Users\\aniq\\Desktop\\PG2P5\\PG2P6\\DungeonCrawler\\level1.json";
     Levelverwaltung *lv = new Levelverwaltung;
     //lv->einspeichern(l);
     Level* l = lv->einlesen(s,gui,dungeon);
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
     l->setGraph(graph);
     dungeon->addLevel(l);
     dungeon->setLevel(l);
-    s="/home/hamoudi/Uni/PG2/PG2P6/DungeonCrawler/level2.json";
+    s="C:\\Users\\aniq\\Desktop\\PG2P5\\PG2P6\\DungeonCrawler\\level2.json";
 
     l = lv->einlesen(s,nullptr,dungeon);
     graph = new Graph(l);
