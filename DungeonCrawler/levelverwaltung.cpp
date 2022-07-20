@@ -184,7 +184,7 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
                 tile = pC.source;
             }
             if(typ=="ramp")
-                tile= new Ramp(col,row);
+                tile= new Ramp(row,col);
             if(typ =="switch") {
                 switchTarget sT;
                 sT.sourceCol = col;
