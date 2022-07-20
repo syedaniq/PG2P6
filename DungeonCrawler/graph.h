@@ -37,6 +37,7 @@ public:
     };
 
     Graph(Level* level);
+    ~Graph();
     void addKnoten(Tile* t);
     Knoten* findKnoten(int row, int col);
     void addNachbarKanten(Tile* from);

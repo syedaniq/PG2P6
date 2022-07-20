@@ -31,6 +31,22 @@ Graph::Graph(Level *level) : level(level)
     }
 }
 
+Graph::~Graph()
+{
+    for(const auto& knoten:this->knoten )
+    {
+        for(const auto& nachbar: knoten->adjazenzliste)
+        {
+
+            delete nachbar;
+        }
+        knoten->getAdjazenzliste().clear();
+        delete knoten;
+    }
+    knoten.clear();
+    delete this->level;
+}
+
 void Graph::addKnoten(Tile *t)
 {
     Knoten* n = new Knoten;
