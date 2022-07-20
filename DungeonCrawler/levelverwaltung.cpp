@@ -320,8 +320,8 @@ void Levelverwaltung::einspeichern(Level *level, int index)
                 tileName = "levelchanger";
                 LevelChanger* d = dynamic_cast<LevelChanger*>(level->getTile(a,b));
                 j["tiles"].push_back({{"col", level->getTile(a,b)->getCol()},
-                                      //{"destcol", d->getDestTile()->getCol()},
-                                      //{"destrow", d->getDestTile()->getRow()},
+                                      {"destcol", d->getDestTile()->getCol()},
+                                      {"destrow", d->getDestTile()->getRow()},
                                       {"name", tileName},
                                       {"row", level->getTile(a,b)->getRow()},
                                       {"texture", tileName},

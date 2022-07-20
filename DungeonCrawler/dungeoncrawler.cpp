@@ -20,17 +20,22 @@ DungeonCrawler::DungeonCrawler(AbstractUI *abstractUI)
 #include "attackcontroller.h"
 void DungeonCrawler::play()
 {
-    for(int i=0; i<currentLevel->getROW(); i++)
+
+    for(int c=0; c<levels.size(); c++)
     {
-        for(int j=0; j<currentLevel->getCOL(); j++)
+        for(int i=0; i<levels.at(c)->getROW(); i++)
         {
-            if(typeid (*currentLevel->getTile(i,j)) == typeid(LevelChanger))
+            for(int j=0; j<levels.at(c)->getCOL(); j++)
             {
-                LevelChanger *lc = dynamic_cast<LevelChanger*>(currentLevel->getTile(i,j));
-                lc->setToLevel(levels.at(lc->getDestLevelIndex()));
+                if(typeid (*levels.at(c)->getTile(i,j)) == typeid(LevelChanger))
+                {
+                    LevelChanger *lc = dynamic_cast<LevelChanger*>(levels.at(c)->getTile(i,j));
+                    lc->setToLevel(levels.at(lc->getDestLevelIndex()));
+                }
             }
         }
     }
+
     // 1. moveAufruf für jede Figur
     while (1)
     {
