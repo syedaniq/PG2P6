@@ -36,6 +36,8 @@ void DungeonCrawler::play()
     {
         currentLevel->getGraph()->update();
         abstractUI->draw(currentLevel);
+        GraphicalUI* graphicalUI = dynamic_cast<GraphicalUI*>(abstractUI);
+        graphicalUI->updateList(&levels);
 
         int richtung;
         int currentRow = -1;

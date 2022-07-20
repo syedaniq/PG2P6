@@ -113,9 +113,15 @@ void MainWindow::Knoepfe(Level* level)
     saveBtn->setIcon(g->save);
     saveLayout->addWidget(saveBtn, 0, 0);
     saveBtn->setIconSize(QSize(160, 60));
+
+    List* l = g->getLevels();
+
     connect(saveBtn, &QPushButton::clicked, this,
-            [level]()
-            { Levelverwaltung lv; lv.einspeichern(level); });
+            [l]()
+            { Levelverwaltung lv;
+              for(int i=0; i<l->size(); i++)
+                lv.einspeichern(l->at(i),i);
+            });
 }
 
 void MainWindow::spielfeldSetzen(Level *level)

@@ -31,8 +31,11 @@ public:
     };
 
     Levelverwaltung();
-    void einspeichern(Level* level);
     Level *einlesen(string &dateiname, GraphicalUI *gui, DungeonCrawler *dungeon);
+    void einspeichern(Level *level, int index);
+
+private:
+    DungeonCrawler* dungeon;
 };
 
 #endif // LEVELVERWALTUNG_H

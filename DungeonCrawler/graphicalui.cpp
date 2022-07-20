@@ -73,6 +73,11 @@ void GraphicalUI::levelSwitchInit()
     drawn = false;
 }
 
+void GraphicalUI::updateList(List *liste)
+{
+    levels = liste;
+}
+
 void GraphicalUI::hasWon()
 {
     win->show();
@@ -169,4 +174,9 @@ void GraphicalUI::draw(Level *level)
     {
         main->updateField(level);
     }
+}
+
+List *GraphicalUI::getLevels() const
+{
+    return levels;
 }

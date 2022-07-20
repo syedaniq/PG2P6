@@ -26,6 +26,8 @@ Levelverwaltung::Levelverwaltung()
 
 Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCrawler* dungeon)
 {
+    this->dungeon = dungeon;
+
     ifstream quelle(dateiname.c_str(), ios::in);
     vector<charPos*>characters;
     vector<switchTarget>switchs;
@@ -228,7 +230,7 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCra
 }
 
 
-void Levelverwaltung::einspeichern(Level *level)
+void Levelverwaltung::einspeichern(Level *level, int index)
 {
     json j;
     j["_level"]["cols"] = level->getCOL();
@@ -361,6 +363,11 @@ void Levelverwaltung::einspeichern(Level *level)
         }
     }
 
-    ofstream outfile("backup.json");
+
+    string pfad = "backup";
+    pfad.append(to_string(index));
+    pfad.append(".json");
+
+    ofstream outfile(pfad);
     outfile << j.dump(2);
 }

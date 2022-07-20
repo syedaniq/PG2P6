@@ -8,6 +8,7 @@
 #include "victoryscreen.h"
 #include "losescreen.h"
 #include <QPixmap>
+#include "list.h"
 
 class GraphicalUI : public AbstractUI, public Controller
 {
@@ -24,7 +25,7 @@ public:
     QVector<QPixmap> arrows, back, front, left, right, doors, floor, portal, wall, zombie;
     int lastInput = 10;
     void levelSwitchInit();
-
+    void updateList(List* liste);
     void hasWon();
     void hasLost();
 
@@ -36,12 +37,15 @@ public:
 public:
     void draw(Level *level);
 
+    List *getLevels() const;
+
 private:
     StartScreen *start;
     MainWindow *main;
     VictoryScreen *win;
     LoseScreen *lose;
     bool drawn;
+    List* levels;
 };
 
 #endif // GRAPHICALUI_H
