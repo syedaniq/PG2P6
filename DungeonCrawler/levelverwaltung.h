@@ -5,6 +5,7 @@
 #include <string>
 #include "level.h"
 #include "graphicalui.h"
+#include "dungeoncrawler.h"
 class Portal;
 using namespace std;
 using namespace nlohmann;
@@ -30,8 +31,8 @@ public:
     };
 
     Levelverwaltung();
-    Level* einlesen(std::string& dateiname, GraphicalUI* gui);
     void einspeichern(Level* level);
+    Level *einlesen(string &dateiname, GraphicalUI *gui, DungeonCrawler *dungeon);
 };
 
 #endif // LEVELVERWALTUNG_H

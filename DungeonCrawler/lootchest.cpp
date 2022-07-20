@@ -30,3 +30,8 @@ Tile *Lootchest::onLeave(Tile *destTile, Character *who)
 {
     return this;
 }
+
+void Lootchest::setG(GraphicalUI *value)
+{
+    g = value;
+}

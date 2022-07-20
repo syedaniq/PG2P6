@@ -24,7 +24,7 @@ Levelverwaltung::Levelverwaltung()
 {
 }
 
-Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
+Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCrawler* dungeon)
 {
     ifstream quelle(dateiname.c_str(), ios::in);
     vector<charPos*>characters;
@@ -125,7 +125,7 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
             int col=0;
             int destrow=0;
             int destcol=0;
-            int id = 0,targetLevelID = 0,portalType = 0,destLevelIndex = 0;
+            int id = 0, portalType = 0,destLevelIndex = 0;
             bool is_open = 0;
 
             for(const auto& values: item.items())
@@ -141,8 +141,6 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
                 else if(values.key()=="destcol")
                     destcol=values.value();
                 else if(values.key()=="id")
-                    targetLevelID=values.value();
-                else if(values.key()=="targetLevelID")
                     id=values.value();
                 else if(values.key()=="is_open")
                     is_open=values.value();
@@ -172,8 +170,13 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
                 tile = new Door(row,col);
             if(typ=="floor")
                 tile= new Floor(row,col);
-            if(typ =="treasure")
-                tile = new Lootchest(row,col, nullptr);
+            if(typ =="treasure") {
+                tile = new Lootchest(row,col,gui);
+                Lootchest* lc = dynamic_cast<Lootchest*>(tile);
+                lc->setG(gui);
+                level->getField().at(row).at(col)=lc;
+                continue;
+            }
             if(typ=="pit")
                 tile = new Pit(row,col);
             if(typ=="portal"){
@@ -198,6 +201,8 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
             if(typ == "levelchanger")
             {
                 tile = new LevelChanger(row,col,id,destLevelIndex);
+                LevelChanger* lc = dynamic_cast<LevelChanger*>(tile);
+                lc->attach(dungeon);
             }
             level->getField().at(row).at(col)= tile;
         }
@@ -317,7 +322,6 @@ void Levelverwaltung::einspeichern(Level *level)
                                       {"destrow", d->getDestTile()->getRow()},
                                       {"name", tileName},
                                       {"row", level->getTile(a,b)->getRow()},
-                                      {"targetLevelID", d->getToLevel()->getId()},
                                       {"texture", tileName},
                                       {"destLevelIndex", d->getDestLevelIndex()},
                                       {"id", d->getId()}

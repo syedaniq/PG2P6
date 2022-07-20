@@ -11,6 +11,7 @@ class DungeonCrawler : public Passive
 {
 public:
     DungeonCrawler(AbstractUI *abstractUI, Level *currentLevel);
+    DungeonCrawler(AbstractUI* abstractUI);
     void play();
     void addLevel(Level *l);
     void setLevel(Level *l);

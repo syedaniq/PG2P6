@@ -5,10 +5,17 @@ using std::cout;
 using std::endl;
 
 #include "switch.h"
+#include "lootchest.h"
 
 DungeonCrawler::DungeonCrawler(AbstractUI *abstractUI, Level *currentLevel)
     : abstractUI(abstractUI), currentLevel(currentLevel)
 {
+}
+
+DungeonCrawler::DungeonCrawler(AbstractUI *abstractUI)
+ : abstractUI(abstractUI)
+{
+
 }
 
 void DungeonCrawler::play()
@@ -88,18 +95,25 @@ void DungeonCrawler::play()
                     {
                         if (who)
                         {
-                            if(typeid (currentLevel->getTile(currentRow + newRow, currentCol + newCol)) == typeid(LevelChanger))
+
+                            if(typeid(*currentLevel->getTile((currentRow+newRow), (currentCol+newCol)))==typeid(Lootchest))
+                            {
+                                Lootchest* lc = dynamic_cast<Lootchest*>(currentLevel->getTile((currentRow+newRow), (currentCol+newCol)));
+                                lc->setG(dynamic_cast<GraphicalUI*>(abstractUI));
+                            }
+
+                            if(typeid(*currentLevel->getTile((currentRow+newRow), (currentCol+newCol)))==typeid(Switch))
+                            {
+                                //currentLevel->getGraph()->update();
+                            }
+
+                            if(typeid (*currentLevel->getTile(currentRow + newRow, currentCol + newCol)) == typeid(LevelChanger))
                             {
                                 LevelChanger *lc = dynamic_cast<LevelChanger*>(currentLevel->getTile(currentRow + newRow, currentCol + newCol));
                                 lc->setToLevel(levels.at(lc->getDestLevelIndex()));
                             }
                             who->getTile()->moveTo(currentLevel->getTile(currentRow + newRow, currentCol + newCol), who);
                             mainHasMoved = true;
-
-                            if(typeid(*currentLevel->getTile((currentRow+newRow), (currentCol+newCol)))==typeid(Switch))
-                            {
-                                //currentLevel->getGraph()->update();
-                            }
                         }
                     }
                     else

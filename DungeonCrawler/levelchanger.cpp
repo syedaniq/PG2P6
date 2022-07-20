@@ -58,6 +58,7 @@ Tile *LevelChanger::onEnter(Tile *fromTile, Character *who)
                 LevelChanger* destLevelChanger = dynamic_cast<LevelChanger*>(tmp);
                 if (destLevelChanger->getId() == this->getId())
                 {
+                    destTile = tmp;
                     activate();
                     return tmp;
                 }
@@ -89,16 +90,6 @@ Tile *LevelChanger::getDestTile() const
 void LevelChanger::setDestTile(Tile *newDestTile)
 {
     destTile = newDestTile;
-}
-
-int LevelChanger::getTargetID() const
-{
-    return targetID;
-}
-
-void LevelChanger::setTargetID(int value)
-{
-    targetID = value;
 }
 
 int LevelChanger::getDestLevelIndex() const

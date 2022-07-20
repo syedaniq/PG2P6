@@ -13,6 +13,7 @@ public:
     string getTexture();
     Tile *onEnter(Tile *fromTile, Character *who);
     Tile *onLeave(Tile *destTile, Character *who);
+    void setG(GraphicalUI *value);
 
 private:
     GraphicalUI *g;

@@ -27,9 +27,6 @@ public:
     Tile *getDestTile() const;
     void setDestTile(Tile *newDestTile);
 
-    int getTargetID() const;
-    void setTargetID(int value);
-
     int getDestLevelIndex() const;
     void setDestLevelIndex(int value);
 
@@ -39,7 +36,6 @@ public:
 private:
     Level *toLevel;
     Tile *destTile;
-    int targetID;
     int id, destLevelIndex;
 };
 
