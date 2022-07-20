@@ -152,6 +152,9 @@ Level::Level(const Level &level) : ROW(level.ROW), COL(level.COL)
             }
         }
     }
+    graph = level.getGraph();
+    controller = level.getController();
+    id = level.getId();
 }
 
 int Level::getId() const
@@ -274,6 +277,11 @@ Level &Level::operator=(const Level &level)
             }
         }
     }
+
+    graph = level.getGraph();
+    controller = level.getController();
+    id = level.getId();
+    return *this;
 }
 
 Tile *Level::getTile(int row, int col)
