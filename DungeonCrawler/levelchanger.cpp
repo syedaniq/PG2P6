@@ -80,6 +80,22 @@ Level *LevelChanger::getToLevel() const
 void LevelChanger::setToLevel(Level *newToLevel)
 {
     toLevel = newToLevel;
+
+    for (int i = 0; i< toLevel->getROW(); i++)
+    {
+        for (int j = 0; j < toLevel->getCOL(); j++)
+        {
+            Tile* tmp = toLevel->getTile(i, j);
+            if (typeid(*tmp) == typeid(LevelChanger))
+            {
+                LevelChanger* destLevelChanger = dynamic_cast<LevelChanger*>(tmp);
+                if (destLevelChanger->getId() == this->getId())
+                {
+                    destTile = tmp;
+                }
+            }
+        }
+    }
 }
 
 Tile *LevelChanger::getDestTile() const

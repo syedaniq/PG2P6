@@ -72,10 +72,17 @@ int main(int argc, char *argv[])
     Levelverwaltung *lv = new Levelverwaltung;
     //lv->einspeichern(l);
     Level* l = lv->einlesen(s,gui,dungeon);
+    Graph* graph = new Graph(l);
+    l->setGraph(graph);
     dungeon->addLevel(l);
     dungeon->setLevel(l);
     s="C:\\Users\\aniq\\Desktop\\PG2P5\\PG2P6\\DungeonCrawler\\level2.json";
-    dungeon->addLevel(lv->einlesen(s,nullptr,dungeon));
+
+    l = lv->einlesen(s,nullptr,dungeon);
+    graph = new Graph(l);
+    l->setGraph(graph);
+    dungeon->addLevel(l);
+
     dungeon->play();
     app.exec();
 }

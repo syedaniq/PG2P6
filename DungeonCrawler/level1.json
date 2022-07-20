@@ -15,6 +15,17 @@
       "stamina": 20,
       "strength": 20,
       "texture": "hero"
+    },
+    {
+      "col": 8,
+      "controller": {
+        "name": "attackcontroller"
+      },
+      "hp": 45,
+      "row": 2,
+      "stamina": 50,
+      "strength": 50,
+      "texture": "goblin"
     }
   ],
   "tiles": [
