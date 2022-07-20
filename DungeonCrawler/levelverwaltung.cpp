@@ -179,9 +179,10 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
             if(typ=="portal"){
                 portalConnect pC;
                 pC.source = new Portal(row, col, nullptr, portalType);
-                pC.targetCol = col;
-                pC.targetRow = row;
+                pC.targetCol = destcol;
+                pC.targetRow = destrow;
                 tile = pC.source;
+                portale.push_back(pC);
             }
             if(typ=="ramp")
                 tile= new Ramp(row,col);
