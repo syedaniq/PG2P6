@@ -291,7 +291,7 @@ void Level::placeCharacter(Character *c, int row, int col)
     c->setTile(this->getTile(row,col));
     c->getTile()->setCharacter(c);
     this->getCharacters().push_back(c);
-    field.at(row).at(col)->setCharacter(c);
+    //field.at(row).at(col)->setCharacter(c);
 }
 
 vector<vector<Tile *>> &Level::getField()

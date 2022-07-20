@@ -98,7 +98,7 @@ void DungeonCrawler::play()
 
                             if(typeid(*currentLevel->getTile((currentRow+newRow), (currentCol+newCol)))==typeid(Switch))
                             {
-                                currentLevel->getGraph()->update();
+                                //currentLevel->getGraph()->update();
                             }
                         }
                     }

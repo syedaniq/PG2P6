@@ -37,92 +37,84 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
        exit(-1);
      }
 
-         json jFile;
-         quelle >> jFile;
-         Level* level;
-         quelle.close();
+     json jFile;
+     quelle >> jFile;
+     Level* level;
+     quelle.close();
 
-        for(const auto& item: jFile.items())
+     for(const auto& item: jFile.items())
+     {
+        if(item.key()=="_level")
         {
-           if(item.key()=="_level")
-           {
-               int row, col, id;
-               for(const auto& valueItem: item.value().items())
-               {
-                   if(valueItem.key()=="cols")
-                      col = valueItem.value();
-                   if(valueItem.key()=="rows")
-                       row = valueItem.value();
-                   if(valueItem.key()=="id")
-                       id = valueItem.value();
-               }
-               level = new Level(gui,row,col, id);
-           }
-
+            int row, col, id;
+            for(const auto& valueItem: item.value().items())
+            {
+                if(valueItem.key()=="cols")
+                   col = valueItem.value();
+                if(valueItem.key()=="rows")
+                    row = valueItem.value();
+                if(valueItem.key()=="id")
+                    id = valueItem.value();
+            }
+            level = new Level(gui,row,col, id);
         }
 
-        for(const auto& item: jFile["characters"])
-        {
-            int hp, row, col, stamina, strength;
-            string controllerName;
-            bool isHuman;
-            Controller* controller;
+     }
 
-            for(auto& values : item.items())
-            {
+     for(const auto& item: jFile["characters"])
+     {
+         int hp, row, col, stamina, strength;
+         string controllerName;
+         bool isHuman;
+         Controller* controller;
 
-                if(values.key() == "hp")
-                    hp = values.value();
-                if(values.key() == "row")
-                    row = values.value();
-                if(values.key() == "col")
-                    col = values.value();
-                if(values.key() == "stamina")
-                    stamina = values.value();
-                if(values.key() == "strength")
-                    strength = values.value();
-                if(values.key() == "texture")
-                {
-                    if(values.value() == "hero")
-                        isHuman = true;
-                    else
-                        isHuman = false;
-                }
-                if(values.key() == "controller")
-                {
-                    cout << endl;
-                    cout << "Hi" << endl;
-                    cout << endl;
-                    for(auto& iwas : values.value().items())
-                    {
-                        if(iwas.key() == "name")
-                        {
-                            if(iwas.value() == "stationarycontroller")
-                                controller = new StationaryController;
-                            if(iwas.value() == "uicontroller")
-                                controller = level->getController();
-                            if(iwas.value() == "attackcontroller")
-                                controller = new AttackController(level);
-                        }
-                        if(iwas.key() == "movement")
-                        {
-                            string muster = iwas.value();
-                            controller = new GuardController(muster);
-                        }
-                    }
-                }
-            }
+         for(auto& values : item.items())
+         {
 
+             if(values.key() == "hp")
+                 hp = values.value();
+             if(values.key() == "row")
+                 row = values.value();
+             if(values.key() == "col")
+                 col = values.value();
+             if(values.key() == "stamina")
+                 stamina = values.value();
+             if(values.key() == "strength")
+                 strength = values.value();
+             if(values.key() == "texture")
+             {
+                 if(values.value() == "hero")
+                     isHuman = true;
+                 else
+                     isHuman = false;
+             }
+             if(values.key() == "controller")
+             {
+                 for(auto& iwas : values.value().items())
+                 {
+                     if(iwas.key() == "name")
+                     {
+                         if(iwas.value() == "stationarycontroller")
+                             controller = new StationaryController;
+                         if(iwas.value() == "uicontroller")
+                             controller = level->getController();
+                         if(iwas.value() == "attackcontroller")
+                             controller = new AttackController(level);
+                     }
+                     if(iwas.key() == "movement")
+                     {
+                         string muster = iwas.value();
+                         controller = new GuardController(muster);
+                     }
+                 }
+             }
+         }
             charPos* cP = new charPos;
             Character* c = new Character("x",1,controller,strength,stamina,isHuman);
             cP->character = c;
             cP->col = col;
             cP->row = row;
             characters.push_back(cP);
-
-            //level->placeCharacter(c,row,col);
-            //level->getCharacters().push_back(c);
-            cout << "END OF FILE" << endl;
         }
 
         for(const auto& item: jFile["tiles"])
@@ -160,10 +152,14 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
                     destLevelIndex=values.value();
                 else if(values.key()=="targets")
                 {
-                    for (const auto& target : jFile["targets"])
+                    for(auto& kA : values.value().items())
                     {
-                        destcol = target["col"];
-                        destrow = target["row"];
+                        for(auto& egal : kA.value().items()) {
+                            if(egal.key()=="row")
+                                destrow = egal.value();
+                            if(egal.key()=="col")
+                                destcol = egal.value();
+                        }
                     }
                 }
                 else
@@ -209,6 +205,19 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui)
         {
             level->placeCharacter(chars->character,chars->row,chars->col);
         }
+
+        for(auto& portale : portale)
+        {
+            portale.source->setDestination(level->getTile(portale.targetRow,portale.targetCol));
+        }
+
+        for(auto& switches : switchs)
+        {
+            Switch* s = dynamic_cast<Switch*>(level->getTile(switches.sourceRow,switches.sourceCol));
+            Door* d = dynamic_cast<Door*>(level->getTile(switches.targetRow,switches.targetCol));
+            s->attach(d);
+        }
+
         return level;
 }
 

@@ -11,34 +11,10 @@
         "name": "uicontroller"
       },
       "hp": 120,
-      "row": 1,
+      "row": 8,
       "stamina": 20,
       "strength": 20,
       "texture": "hero"
-    },
-    {
-      "col": 8,
-      "controller": {
-        "movement": "8456",
-        "name": "guardcontroller",
-        "pos": "0"
-      },
-      "hp": 45,
-      "row": 2,
-      "stamina": 5,
-      "strength": 5,
-      "texture": "goblin"
-    },
-    {
-      "col": 7,
-      "controller": {
-        "name": "stationarycontroller"
-      },
-      "hp": 270,
-      "row": 5,
-      "stamina": 50,
-      "strength": 50,
-      "texture": "goblin"
     }
   ],
   "tiles": [
