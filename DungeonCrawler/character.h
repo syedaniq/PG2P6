@@ -9,6 +9,7 @@ class Character
 {
 public:
     Character(string texture, int moveDirection, Controller *controller, int strength = 100, int stamina = 100, bool isHuman = false);
+    Character(Character& rhs);
     ~Character(){};
     Tile *getTile() const;
     void setTile(Tile *newTile);

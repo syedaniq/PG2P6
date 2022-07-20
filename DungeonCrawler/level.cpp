@@ -162,6 +162,11 @@ int Level::getId() const
     return id;
 }
 
+void Level::setController(Controller *newController)
+{
+    controller = newController;
+}
+
 Level::~Level()
 {
     for (int i = 0; i < ROW; i++)

@@ -43,6 +43,8 @@ public:
     Level(Controller *controller, int row, int col, int id);
     int getId() const;
 
+    void setController(Controller *newController);
+
 protected:
     const int ROW;
     const int COL;

@@ -11,6 +11,17 @@ Character::Character(string texture, int moveDirection, Controller *controller, 
     hitpoints = getMaxHP();
 }
 
+Character::Character(Character &rhs)
+{
+    this->setController(rhs.getController());
+    this->setHitpoints(rhs.getHitpoints());
+    this->setIsHuman(rhs.getIsHuman());
+    this->setMoveDirection(rhs.getMoveDirection());
+    this->setStamina(rhs.getStamina());
+    this->setStrength(rhs.getStrength());
+    this->setTile(rhs.getTile());
+}
+
 Tile *Character::getTile() const
 {
     return tile;
