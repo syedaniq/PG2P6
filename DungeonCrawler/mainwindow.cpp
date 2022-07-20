@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "attackcontroller.h"
 #include "ui_mainwindow.h"
 
 #include "door.h"
@@ -173,6 +174,19 @@ void MainWindow::spielfeldSetzen(Level *level)
             {
                 if (level->getTile(i, j)->getCharacter()->getHitpoints() > 0)
                 {
+                    if(typeid(*level->getTile(i,j)->getCharacter()->getController())== typeid(AttackController))
+                    {
+                        goblin = new QLabel(ui->centralwidget);
+                        goblin->setScaledContents(true);
+
+                        goblin->setPixmap(g->goblin);
+
+                        field.push_back(goblin);
+                        gridlayout->addWidget(goblin, i, j);
+
+                        goblin->raise();
+                    }
+                    else{
                     zombie = new QLabel(ui->centralwidget);
                     zombie->setScaledContents(true);
 
@@ -182,6 +196,7 @@ void MainWindow::spielfeldSetzen(Level *level)
                     gridlayout->addWidget(zombie, i, j);
 
                     zombie->raise();
+                    }
                 }
                 continue;
             }

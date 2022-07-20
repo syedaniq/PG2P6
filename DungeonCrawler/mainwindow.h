@@ -29,6 +29,7 @@ public:
     void setJeweiligePixmap(Tile *tile, QLabel *label);
     QLabel *character;
     QLabel *zombie;
+    QLabel *goblin;
 
     void Knoepfe(Level* level);
 
