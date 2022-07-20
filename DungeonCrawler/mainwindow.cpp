@@ -114,13 +114,10 @@ void MainWindow::Knoepfe(Level* level)
     saveLayout->addWidget(saveBtn, 0, 0);
     saveBtn->setIconSize(QSize(160, 60));
 
-    List* l = g->getLevels();
-
     connect(saveBtn, &QPushButton::clicked, this,
-            [l]()
-            { Levelverwaltung lv;
-              for(int i=0; i<l->size(); i++)
-                lv.einspeichern(l->at(i),i);
+            [this]()
+            {
+              this->Speichern();
             });
 }
 
@@ -336,6 +333,12 @@ void MainWindow::setJeweiligePixmap(Tile *tile, QLabel *label)
         label->setPixmap(g->levelchanger);
     else if (typeid(*tile) == typeid(Lootchest))
         label->setPixmap(g->chest);
+}
+
+void MainWindow::Speichern()
+{Levelverwaltung lv;
+    for(int i=0; i<g->getLevels()->size(); i++)
+      lv.einspeichern(g->getLevels()->at(i),i);
 }
 
 MainWindow::MainWindow(GraphicalUI *g, QWidget *parent)

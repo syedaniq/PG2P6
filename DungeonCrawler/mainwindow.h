@@ -30,7 +30,7 @@ public:
     QLabel *character;
     QLabel *zombie;
     QLabel *goblin;
-
+    void Speichern();
     void Knoepfe(Level* level);
 
 private:
