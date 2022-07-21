@@ -42,8 +42,5 @@ bool Door::getOpen() const
 
 void Door::setOpen(bool newOpen)
 {
-    if (this->getOpen() == true)
-        open = false;
-    else
-        open = true;
+    open = newOpen;
 }

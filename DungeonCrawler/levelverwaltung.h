@@ -14,12 +14,6 @@ class Levelverwaltung
 {
 public:
 
-    struct charPos {
-        Character* character;
-        int row;
-        int col;
-    };
-
     struct switchTarget {
         int sourceRow, sourceCol;
         int targetRow, targetCol;

@@ -29,7 +29,6 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCra
     this->dungeon = dungeon;
 
     ifstream quelle(dateiname.c_str(), ios::in);
-    vector<charPos*>characters;
     vector<switchTarget>switchs;
     vector<portalConnect>portale;
 
@@ -60,159 +59,155 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCra
             }
             level = new Level(gui,row,col, id);
         }
-
      }
 
-     for(const auto& item: jFile["characters"])
-     {
-         int hp, row, col, stamina, strength;
-         string controllerName;
-         bool isHuman;
-         Controller* controller;
+    for(const auto& item: jFile["tiles"])
+    {
+        Tile* tile;
+        string typ="";
+        int row=0;
+        int col=0;
+        int destrow=0;
+        int destcol=0;
+        int id = 0, portalType = 0,destLevelIndex = 0;
+        bool is_open = 0;
 
-         for(auto& values : item.items())
-         {
-
-             if(values.key() == "hp")
-                 hp = values.value();
-             if(values.key() == "row")
-                 row = values.value();
-             if(values.key() == "col")
-                 col = values.value();
-             if(values.key() == "stamina")
-                 stamina = values.value();
-             if(values.key() == "strength")
-                 strength = values.value();
-             if(values.key() == "texture")
-             {
-                 if(values.value() == "hero")
-                     isHuman = true;
-                 else
-                     isHuman = false;
-             }
-             if(values.key() == "controller")
-             {
-                 for(auto& iwas : values.value().items())
-                 {
-                     if(iwas.key() == "name")
-                     {
-                         if(iwas.value() == "stationarycontroller")
-                             controller = new StationaryController;
-                         if(iwas.value() == "uicontroller")
-                             controller = level->getController();
-                         if(iwas.value() == "attackcontroller")
-                             controller = new AttackController(level);
-                     }
-                     if(iwas.key() == "movement")
-                     {
-                         string muster = iwas.value();
-                         controller = new GuardController(muster);
-                     }
-                 }
-             }
-         }
-            charPos* cP = new charPos;
-            Character* c = new Character("x",1,controller,strength,stamina,isHuman);
-            cP->character = c;
-            cP->col = col;
-            cP->row = row;
-            characters.push_back(cP);
-        }
-
-        for(const auto& item: jFile["tiles"])
+        for(const auto& values: item.items())
         {
-            Tile* tile;
-            string typ="";
-            int row=0;
-            int col=0;
-            int destrow=0;
-            int destcol=0;
-            int id = 0, portalType = 0,destLevelIndex = 0;
-            bool is_open = 0;
-
-            for(const auto& values: item.items())
+            if(values.key()=="row")
+                row = values.value();
+            else if(values.key()=="col")
+                col=values.value();
+            else if(values.key()=="name")
+                typ = values.value();
+            else if(values.key()=="destrow")
+                destrow=values.value();
+            else if(values.key()=="destcol")
+                destcol=values.value();
+            else if(values.key()=="id")
+                id=values.value();
+            else if(values.key()=="is_open")
+                is_open=values.value();
+            else if(values.key() == "portalType")
+                portalType=values.value();
+            else if(values.key() == "destLevelIndex")
+                destLevelIndex=values.value();
+            else if(values.key()=="targets")
             {
-                if(values.key()=="row")
-                    row = values.value();
-                else if(values.key()=="col")
-                    col=values.value();
-                else if(values.key()=="name")
-                    typ = values.value();
-                else if(values.key()=="destrow")
-                    destrow=values.value();
-                else if(values.key()=="destcol")
-                    destcol=values.value();
-                else if(values.key()=="id")
-                    id=values.value();
-                else if(values.key()=="is_open")
-                    is_open=values.value();
-                else if(values.key() == "portalType")
-                    portalType=values.value();
-                else if(values.key() == "destLevelIndex")
-                    destLevelIndex=values.value();
-                else if(values.key()=="targets")
+                for(auto& kA : values.value().items())
                 {
-                    for(auto& kA : values.value().items())
-                    {
-                        for(auto& egal : kA.value().items()) {
-                            if(egal.key()=="row")
-                                destrow = egal.value();
-                            if(egal.key()=="col")
-                                destcol = egal.value();
-                        }
+                    for(auto& egal : kA.value().items()) {
+                        if(egal.key()=="row")
+                            destrow = egal.value();
+                        if(egal.key()=="col")
+                            destcol = egal.value();
                     }
                 }
-                else
-                    continue;
             }
-
-            if(typ=="wall")
-               tile = new Wall(row,col);
-            if(typ=="door")
-                tile = new Door(row,col);
-            if(typ=="floor")
-                tile= new Floor(row,col);
-            if(typ =="treasure") {
-                tile = new Lootchest(row,col,gui);
-                Lootchest* lc = dynamic_cast<Lootchest*>(tile);
-                lc->setG(gui);
-                level->getField().at(row).at(col)=lc;
+            else
                 continue;
-            }
-            if(typ=="pit")
-                tile = new Pit(row,col);
-            if(typ=="portal"){
-                portalConnect pC;
-                pC.source = new Portal(row, col, nullptr, portalType);
-                pC.targetCol = destcol;
-                pC.targetRow = destrow;
-                tile = pC.source;
-                portale.push_back(pC);
-            }
-            if(typ=="ramp")
-                tile= new Ramp(row,col);
-            if(typ =="switch") {
-                switchTarget sT;
-                sT.sourceCol = col;
-                sT.sourceRow = row;
-                sT.targetCol = destcol;
-                sT.targetRow = destrow;
-                switchs.push_back(sT);
-                tile = new Switch(row, col);
-            }
-            if(typ == "levelchanger")
-            {
-                tile = new LevelChanger(row,col,id,destLevelIndex);
-                LevelChanger* lc = dynamic_cast<LevelChanger*>(tile);
-                lc->attach(dungeon);
-            }
-            level->getField().at(row).at(col)= tile;
         }
 
-        for(auto& chars : characters)
+        if(typ=="wall")
+           tile = new Wall(row,col);
+        if(typ=="door")
         {
-            level->placeCharacter(chars->character,chars->row,chars->col);
+            tile = new Door(row,col);
+            Door* d = dynamic_cast<Door*>(tile);
+            d->setOpen(is_open);
+            level->getField().at(row).at(col)=d;
+            continue;
         }
+        if(typ=="floor")
+            tile= new Floor(row,col);
+        if(typ =="treasure") {
+            tile = new Lootchest(row,col,gui);
+            Lootchest* lc = dynamic_cast<Lootchest*>(tile);
+            lc->setG(gui);
+            level->getField().at(row).at(col)=lc;
+            continue;
+        }
+        if(typ=="pit")
+            tile = new Pit(row,col);
+        if(typ=="portal"){
+            portalConnect pC;
+            pC.source = new Portal(row, col, nullptr, portalType);
+            pC.targetCol = destcol;
+            pC.targetRow = destrow;
+            tile = pC.source;
+            portale.push_back(pC);
+        }
+        if(typ=="ramp")
+            tile= new Ramp(row,col);
+        if(typ =="switch") {
+            switchTarget sT;
+            sT.sourceCol = col;
+            sT.sourceRow = row;
+            sT.targetCol = destcol;
+            sT.targetRow = destrow;
+            switchs.push_back(sT);
+            tile = new Switch(row, col);
+        }
+        if(typ == "levelchanger")
+        {
+            tile = new LevelChanger(row,col,id,destLevelIndex);
+            LevelChanger* lc = dynamic_cast<LevelChanger*>(tile);
+            lc->attach(dungeon);
+        }
+        level->getField().at(row).at(col)= tile;
+    }
+
+    for(const auto& item: jFile["characters"])
+    {
+        int hp, row, col, stamina, strength;
+        string controllerName;
+        bool isHuman;
+        Controller* controller;
+
+        for(auto& values : item.items())
+        {
+
+            if(values.key() == "hp")
+                hp = values.value();
+            if(values.key() == "row")
+                row = values.value();
+            if(values.key() == "col")
+                col = values.value();
+            if(values.key() == "stamina")
+                stamina = values.value();
+            if(values.key() == "strength")
+                strength = values.value();
+            if(values.key() == "texture")
+            {
+                if(values.value() == "hero")
+                    isHuman = true;
+                else
+                    isHuman = false;
+            }
+            if(values.key() == "controller")
+            {
+                for(auto& iwas : values.value().items())
+                {
+                    if(iwas.key() == "name")
+                    {
+                        if(iwas.value() == "stationarycontroller")
+                            controller = new StationaryController;
+                        if(iwas.value() == "uicontroller")
+                            controller = gui;
+                        if(iwas.value() == "attackcontroller")
+                            controller = new AttackController(level);
+                    }
+                    if(iwas.key() == "movement")
+                    {
+                        string muster = iwas.value();
+                        controller = new GuardController(muster);
+                    }
+                }
+            }
+        }
+           Character* c = new Character("x",1,controller,strength,stamina,isHuman);
+           level->placeCharacter(c,row,col);
+       }
 
         for(auto& portale : portale)
         {
@@ -228,7 +223,6 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCra
 
         return level;
 }
-
 
 void Levelverwaltung::einspeichern(Level *level, int index)
 {
