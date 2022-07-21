@@ -52,7 +52,5 @@
         <file>textures/goblin_up.png</file>
         <file>level2.json</file>
         <file>level1.json</file>
-        <file>backup1.json</file>
-        <file>backup0.json</file>
     </qresource>
 </RCC>
