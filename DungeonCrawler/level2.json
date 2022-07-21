@@ -4,7 +4,19 @@
     "name": "level2",
     "rows": 4
   },
-  "characters": [],
+  "characters": [
+    {
+      "col": 1,
+      "controller": {
+        "name": "stationarycontroller"
+      },
+      "hp": 120,
+      "row": 2,
+      "stamina": 20,
+      "strength": 20,
+      "texture": "goblin"
+    }
+ ],
   "tiles": [
     {
       "col": 0,

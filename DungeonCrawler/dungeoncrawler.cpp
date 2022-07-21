@@ -20,6 +20,13 @@ DungeonCrawler::DungeonCrawler(AbstractUI *abstractUI)
 #include "attackcontroller.h"
 void DungeonCrawler::play()
 {
+    for(int i=0; i<levels.size();i++){
+        if(!levels.at(i)->characters.empty())
+            if(levels.at(i)->characters.at(0)->getIsHuman()){
+                currentLevel=levels.at(i);
+                currentLevel->getCharacters().at(0)->setController(levels.at(0)->getController());
+            }
+    }
 
     for(int c=0; c<levels.size(); c++)
     {

@@ -26,6 +26,19 @@
       "stamina": 50,
       "strength": 50,
       "texture": "goblin"
+    },
+    {
+      "col": 5,
+      "controller": {
+        "movement": "448662",
+        "name": "guardcontroller"
+      },
+      
+      "hp": 45,
+      "row": 1,
+      "stamina": 5,
+      "strength": 5,
+      "texture": "goblin"
     }
   ],
   "tiles": [
