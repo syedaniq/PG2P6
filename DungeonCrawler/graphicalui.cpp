@@ -180,3 +180,8 @@ List *GraphicalUI::getLevels() const
 {
     return levels;
 }
+
+MainWindow *GraphicalUI::getMain() const
+{
+    return main;
+}

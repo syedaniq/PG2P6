@@ -39,6 +39,8 @@ public:
 
     List *getLevels() const;
 
+    MainWindow *getMain() const;
+
 private:
     StartScreen *start;
     MainWindow *main;

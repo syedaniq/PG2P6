@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
             QApplication app(argc, argv);
             GraphicalUI *gui = new GraphicalUI;
             DungeonCrawler* dungeon = new DungeonCrawler(gui);
-            string s="/home/aniq/Documents/PG2P6/build-DungeonCrawler-Desktop_Qt_6_3_0_GCC_64bit-Debug/backup0.json";
+            string s="C:/Users/aniq/Desktop/PG2P5/PG2P6/build-DungeonCrawler-Desktop_Qt_5_14_2_MinGW_64_bit-Profile/backup0.json";
             Levelverwaltung *lv = new Levelverwaltung;
 
             Level* l = lv->einlesen(s,gui,dungeon);
@@ -45,9 +45,9 @@ int main(int argc, char *argv[])
             l->setGraph(graph);
             dungeon->addLevel(l);
             dungeon->setLevel(l);
-            s="/home/aniq/Documents/PG2P6/build-DungeonCrawler-Desktop_Qt_6_3_0_GCC_64bit-Debug/backup0.json";
+            s="C:/Users/aniq/Desktop/PG2P5/PG2P6/build-DungeonCrawler-Desktop_Qt_5_14_2_MinGW_64_bit-Profile/backup0.json";
 
-            l = lv->einlesen(s,nullptr,dungeon);
+            l = lv->einlesen(s,gui,dungeon);
             graph = new Graph(l);
             l->setGraph(graph);
             dungeon->addLevel(l);
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
             QApplication app(argc, argv);
             GraphicalUI *gui = new GraphicalUI;
             DungeonCrawler* dungeon = new DungeonCrawler(gui);
-            string s="/home/aniq/Documents/PG2P6/DungeonCrawler/level1.json";
+            string s="C:/Users/aniq/Desktop/PG2P5/PG2P6/DungeonCrawler/level1.json";
             Levelverwaltung *lv = new Levelverwaltung;
             //lv->einspeichern(l);
             Level* l = lv->einlesen(s,gui,dungeon);
@@ -68,9 +68,9 @@ int main(int argc, char *argv[])
             l->setGraph(graph);
             dungeon->addLevel(l);
             dungeon->setLevel(l);
-            s="/home/aniq/Documents/PG2P6/DungeonCrawler/level2.json";
+            s="C:/Users/aniq/Desktop/PG2P5/PG2P6/DungeonCrawler/level2.json";
 
-            l = lv->einlesen(s,nullptr,dungeon);
+            l = lv->einlesen(s,gui,dungeon);
             graph = new Graph(l);
             l->setGraph(graph);
             dungeon->addLevel(l);

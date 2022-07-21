@@ -336,7 +336,8 @@ void MainWindow::setJeweiligePixmap(Tile *tile, QLabel *label)
 }
 
 void MainWindow::Speichern()
-{Levelverwaltung lv;
+{
+    Levelverwaltung lv;
     for(int i=0; i<g->getLevels()->size(); i++)
       lv.einspeichern(g->getLevels()->at(i),i);
 }

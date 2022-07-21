@@ -58,7 +58,7 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCra
                 if(valueItem.key()=="id")
                     id = valueItem.value();
             }
-            level = new Level(gui,row,col, id);
+            level = new Level(gui,row,col,id);
         }
      }
 
@@ -70,8 +70,8 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCra
         int col=0;
         int destrow=0;
         int destcol=0;
-        int id = 0, portalType = 0,destLevelIndex = 0;
-        bool is_open = 0;
+        int id = 0, portalType = 0, destLevelIndex = 0;
+        bool is_open = false;
 
         for(const auto& values: item.items())
         {
@@ -79,8 +79,6 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCra
                 row = values.value();
             else if(values.key()=="col")
                 col=values.value();
-            else if(values.key()=="name")
-                typ = values.value();
             else if(values.key()=="destrow")
                 destrow=values.value();
             else if(values.key()=="destcol")
@@ -105,6 +103,8 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCra
                     }
                 }
             }
+            else if(values.key()=="texture")
+                typ = values.value();
             else
                 continue;
         }
@@ -116,7 +116,8 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCra
             tile = new Door(row,col);
             Door* d = dynamic_cast<Door*>(tile);
             d->setOpen(is_open);
-            level->getField().at(row).at(col)=d;
+            delete level->getField().at(row).at(col);
+            level->getField().at(row).at(col) = d;
             continue;
         }
         if(typ=="floor")
@@ -232,6 +233,7 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCra
             s->attach(d);
         }
 
+        gui->getMain()->spielfeldSetzen(level);
         return level;
 }
 
