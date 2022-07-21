@@ -279,6 +279,8 @@ void Levelverwaltung::einspeichern(Level *level, int index)
                 tileName = "floor";
             else if(typeid(*level->getTile(a,b)) == typeid(Wall))
                 tileName = "wall";
+            else if(typeid(*level->getTile(a,b)) == typeid(Lootchest))
+                tileName = "treasure";
             else if(typeid(*level->getTile(a,b)) == typeid(Pit))
                 tileName = "pit";
             else if(typeid(*level->getTile(a,b)) == typeid(Ramp))
