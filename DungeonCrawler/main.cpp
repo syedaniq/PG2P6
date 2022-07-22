@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
             QApplication app(argc, argv);
             GraphicalUI *gui = new GraphicalUI;
             DungeonCrawler* dungeon = new DungeonCrawler(gui);
-            string s="/home/hamoudi/Uni/PG2/PG2P6/build-DungeonCrawler-Desktop_Qt_6_3_1_GCC_64bit-Debug/backup0.json";
+            string s="/home/aniq/Documents/PG2P6/build-DungeonCrawler-Desktop_Qt_6_3_0_GCC_64bit-Debug/backup0.json";
             Levelverwaltung *lv = new Levelverwaltung;
 
             Level* l = lv->einlesen(s,gui,dungeon);
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
             l->setGraph(graph);
             dungeon->addLevel(l);
             dungeon->setLevel(l);
-            s="/home/hamoudi/Uni/PG2/PG2P6/build-DungeonCrawler-Desktop_Qt_6_3_1_GCC_64bit-Debug/backup1.json";
+            s="/home/aniq/Documents/PG2P6/build-DungeonCrawler-Desktop_Qt_6_3_0_GCC_64bit-Debug/backup1.json";
 
             l = lv->einlesen(s,nullptr,dungeon);
             graph = new Graph(l);
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
             QApplication app(argc, argv);
             GraphicalUI *gui = new GraphicalUI;
             DungeonCrawler* dungeon = new DungeonCrawler(gui);
-            string s="/home/hamoudi/Uni/PG2/PG2P6/DungeonCrawler/level1.json";
+            string s="/home/aniq/Documents/PG2P6/DungeonCrawler/level1.json";
             Levelverwaltung *lv = new Levelverwaltung;
             //lv->einspeichern(l);
             Level* l = lv->einlesen(s,gui,dungeon);
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
             l->setGraph(graph);
             dungeon->addLevel(l);
             dungeon->setLevel(l);
-            s="/home/hamoudi/Uni/PG2/PG2P6/DungeonCrawler/level2.json";
+            s="/home/aniq/Documents/PG2P6/DungeonCrawler/level2.json";
 
             l = lv->einlesen(s,nullptr,dungeon);
             graph = new Graph(l);

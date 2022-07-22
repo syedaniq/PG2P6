@@ -206,6 +206,7 @@ Level *Levelverwaltung::einlesen(string &dateiname, GraphicalUI *gui, DungeonCra
             }
         }
            Character* c = new Character("x",1,controller,strength,stamina,isHuman);
+           c->setHitpoints(hp);
            level->placeCharacter(c,row,col);
        }
 
