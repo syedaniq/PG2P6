@@ -55,6 +55,7 @@ void Graph::addKnoten(Tile *t)
 
     if(find(knoten.begin(), knoten.end(), n) == knoten.end())
         knoten.push_back(n);
+    delete n;
 }
 
 Graph::Knoten* Graph::findKnoten(int row, int col)
@@ -151,6 +152,8 @@ void Graph::addKante(Tile *from, Tile *to)
             knoten.at(i)->adjazenzliste.push_back(t);
         }
    }
+   delete t;
+   delete f;
 }
 
 void Graph::update()
